@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gym &amp; Workout — Digital Weekly Planner</title>
+    <meta name="description" content="Weekly workout routine, exercise split and video demonstrations">
+    <link rel="stylesheet" href="styles.css?v=3.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- App Root Grid -->
+    <div class="planner-root">
+
+        <!-- Left Navigation Rail (Matches Reference Image 1:1) -->
+        <aside class="planner-left-rail no-print" id="plannerLeftRail" aria-label="Planner Side Navigation">
+            <div class="side-navigation">
+                <!-- Organic Vector Silhouette Background (1:1 S-Curve from Reference Image) -->
+                <svg class="rail-organic-bg" viewBox="0 0 78 660" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="railGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#3d46ea" />
+                            <stop offset="25%" stop-color="#323bc7" />
+                            <stop offset="65%" stop-color="#1e2494" />
+                            <stop offset="100%" stop-color="#0a0d33" />
+                        </linearGradient>
+                        <filter id="railShadow" x="-25%" y="-10%" width="160%" height="120%">
+                            <feDropShadow dx="5" dy="8" stdDeviation="14" flood-color="#090c30" flood-opacity="0.38" />
+                        </filter>
+                    </defs>
+                    <path d="M 0 0 C 0 48, 18 80, 44 95 C 66 107, 78 118, 78 135 L 78 525 C 78 542, 66 553, 44 565 C 18 580, 0 612, 0 660 Z" fill="url(#railGrad)"
+                        filter="url(#railShadow)" />
+                </svg>
+
+                <!-- Navigation Items List (8 Icons matching reference image) -->
+                <nav class="rail-nav-list" role="navigation" aria-label="Planner Navigation">
+                    <!-- 1. Active Squircle with 4 dots (Dashboard) -->
+                    <a href="dashboard.html" class="rail-btn active" aria-label="Dashboard" title="Dashboard">
+                        <div class="rail-squircle">
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                        </div>
+                        <span class="rail-tooltip">Dashboard</span>
+                    </a>
+
+                    <!-- 2. Profile / Account -->
+                    <a href="#profile" class="rail-btn" aria-label="Profile" title="Profile / Account">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4.5"></circle>
+                            <path d="M5.5 20.5c0-3.5 2.8-6 6.5-6s6.5 2.5 6.5 6"></path>
+                        </svg>
+                        <span class="rail-tooltip">Profile</span>
+                    </a>
+
+                    <!-- 3. Money Flow / Analytics -->
+                    <a href="money.html" class="rail-btn" aria-label="Money Flow" title="Money Control">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <span class="rail-tooltip">Money Flow</span>
+                    </a>
+
+                    <!-- 4. Notifications (Bell) -->
+                    <a href="#notifications" class="rail-btn" aria-label="Notifications" title="Notifications">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="rail-tooltip">Notifications</span>
+                    </a>
+
+                    <!-- 5. Daily Schedule (Calendar with dots) -->
+                    <a href="index.html" class="rail-btn" aria-label="Daily Schedule" title="Daily Schedule">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="17" rx="3"></rect>
+                            <line x1="16" y1="2" x2="16" y2="5"></line>
+                            <line x1="8" y1="2" x2="8" y2="5"></line>
+                            <circle cx="8" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="8" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="15" r="1" fill="currentColor"></circle>
+                        </svg>
+                        <span class="rail-tooltip">Daily Schedule</span>
+                    </a>
+
+                    <!-- 6. Messages / Gym (Envelope with Red Notification Dot) -->
+                    <a href="gym.html" class="rail-btn active has-badge" aria-label="Gym & Fitness"
+                        title="Gym & Fitness">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M3.5 16.75C3.76417 16.75 4.0177 16.7045 4.25319 16.6208C4.31598 17.8073 5.2979 18.75 6.5 18.75C7.74264 18.75 8.75 17.7426 8.75 16.5V7.5C8.75 6.25736 7.74264 5.25 6.5 5.25C5.2979 5.25 4.31598 6.1927 4.25319 7.37916C4.0177 7.29553 3.76417 7.25 3.5 7.25C2.25736 7.25 1.25 8.25736 1.25 9.5V14.5C1.25 15.7426 2.25736 16.75 3.5 16.75Z"
+                                    fill="currentColor"></path>
+                                <path
+                                    d="M15.25 7.5C15.25 6.25736 16.2574 5.25 17.5 5.25C18.7021 5.25 19.684 6.1927 19.7468 7.37916C19.9823 7.29553 20.2358 7.25 20.5 7.25C21.7426 7.25 22.75 8.25736 22.75 9.5V14.5C22.75 15.7426 21.7426 16.75 20.5 16.75C20.2358 16.75 19.9823 16.7045 19.7468 16.6208C19.684 17.8073 18.7021 18.75 17.5 18.75C16.2574 18.75 15.25 17.7426 15.25 16.5V7.5Z"
+                                    fill="currentColor"></path>
+                                <path d="M14 10.5H10V13.5H14V10.5Z" fill="currentColor"></path>
+                            </svg>
+                            <span class="rail-dot-red"></span>
+                        </div>
+                        <span class="rail-tooltip">Gym &amp; Fitness</span>
+                    </a>
+
+                    <!-- 7. Routine / Notes (Document with Pencil) -->
+                    <a href="routine.html" class="rail-btn" aria-label="Routine & Notes" title="Routine & Notes">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="13" x2="13" y2="17"></line>
+                            <line x1="13" y1="13" x2="9" y2="17"></line>
+                        </svg>
+                        <span class="rail-tooltip">Routine &amp; Priorities</span>
+                    </a>
+
+                    <!-- 8. Good Habits / Refresh (Cycle Arrows) -->
+                    <a href="habits.html" class="rail-btn" aria-label="Good Habits" title="Good Habits">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                        <span class="rail-tooltip">Good Habits</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Layout Area for Gym Page -->
+        <main class="planner-main planner-main-column" id="plannerMain">
+
+            <!-- Dedicated Gym Sheet Container -->
+            <div class="planner-paper-sheet view-panel-sheet gym-view-sheet">
+
+                <!-- Workout Routine Section Bar -->
+                <div class="gym-routine-header-row">
+                    <div class="gym-routine-title-wrap">
+                        <h2 class="gym-routine-heading">Workout Routine</h2>
+                        <p class="gym-routine-desc">Customize workouts, GIF/video guides &amp; track daily progress</p>
+                    </div>
+                    <div class="gym-routine-actions">
+                        <button type="button" class="gym-btn-outline" id="gymClearAllBtn"
+                            title="Clear exercises for today">Clear</button>
+                        <button type="button" class="gym-btn-outline" id="gymResetAllBtn"
+                            title="Reset all workouts to empty">Reset All</button>
+                        <button type="button" class="gym-btn-outline" id="gymUncheckBtn"
+                            title="Uncheck all exercises for today">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                            </svg>
+                            <span>Uncheck</span>
+                        </button>
+                        <button type="button" class="gym-btn-solid" id="gymAddVideoBtn" title="Add Video / GIF Guides">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span>Add Videos</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout: Exercises on Left, 4 Visual Guides on Right -->
+                <div class="gym-main-layout">
+
+                    <!-- Left Column: Workout Routine & Exercises -->
+                    <div class="gym-left-col">
+                        <!-- Days of week navigation tabs (Mon - Sun) -->
+                        <div class="gym-day-nav" role="tablist" aria-label="Workout days">
+                            <button type="button" class="gym-day-tab active" data-gym-day="mon" role="tab"
+                                aria-selected="true">Mon</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="tue" role="tab"
+                                aria-selected="false">Tue</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="wed" role="tab"
+                                aria-selected="false">Wed</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="thu" role="tab"
+                                aria-selected="false">Thu</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="fri" role="tab"
+                                aria-selected="false">Fri</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="sat" role="tab"
+                                aria-selected="false">Sat</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="sun" role="tab"
+                                aria-selected="false">Sun</button>
+                        </div>
+
+                        <!-- Split & Progress Card -->
+                        <div class="gym-split-banner">
+                            <div class="gym-split-name" id="gymSplitTitle">Mon &bull; Chest &amp; Triceps</div>
+                            <div class="gym-split-progress" id="gymProgressSummary">0 of 0 completed &bull; 0%</div>
+                        </div>
+
+                        <!-- Exercises List Header & Add Button -->
+                        <div class="gym-exercises-card">
+                            <div class="gym-exercises-card-header">
+                                <div class="gym-exercises-label-wrap">
+                                    <span class="gym-exercises-label">EXERCISES</span>
+                                    <span class="gym-items-count-badge" id="gymItemsCountBadge">0 items</span>
+                                </div>
+                                <button type="button" class="gym-btn-solid gym-btn-sm" id="gymAddExerciseBtn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    <span>Add Exercise</span>
+                                </button>
+                            </div>
+
+                            <!-- Dynamic Exercises List Container -->
+                            <div class="gym-exercises-list" id="gymExercisesList">
+                                <!-- Rendered dynamically by gym.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: 4 Visual Workout Demonstration Cards -->
+                    <div class="gym-right-col">
+                        <div class="gym-guides-grid" id="gymGuidesGrid">
+                            <!-- 1. Push-Up Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_pushup">
+                                <div class="gym-guide-header-title">Push-Up</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_pushup">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:24</span>
+                                        <span></span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- 2. Dumbbell Press Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_dumbbell">
+                                <div class="gym-guide-header-title">Doumbell Press</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_dumbbell">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:41</span>
+                                        <span></span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video2.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- 3. Tricep Dips Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_tricep">
+                                <div class="gym-guide-header-title">Tricep Dips</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_tricep">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:28</span>
+                                        <span></span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video3.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- 4. Incline Push-up Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_incline">
+                                <div class="gym-guide-header-title">Incline Push-up</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_incline">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:32</span>
+                                        <span class="gym-guide-check-badge">&#10003;</span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video4.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Gym Modal: Add / Edit Exercise -->
+        <dialog id="gymExerciseModal" class="planner-dialog gym-dialog">
+            <form id="gymExerciseForm" method="dialog" class="gym-modal-form">
+                <div class="dialog-header-row">
+                    <h4>Add / Edit Exercise</h4>
+                    <span class="gym-dialog-badge">Workout Split</span>
+                </div>
+                <div class="gym-modal-fields">
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Exercise Name</span>
+                        <input type="text" id="gymExNameInput" class="gym-text-input"
+                            placeholder="e.g. Incline Bench Press" required>
+                    </label>
+                    <div class="gym-input-row-2">
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Sets</span>
+                            <input type="text" id="gymExSetsInput" class="gym-text-input" placeholder="e.g. 3 sets"
+                                required>
+                        </label>
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Reps / Duration</span>
+                            <input type="text" id="gymExRepsInput" class="gym-text-input" placeholder="e.g. 12 reps"
+                                required>
+                        </label>
+                    </div>
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Day</span>
+                        <select id="gymExDaySelect" class="gym-select-input">
+                            <option value="mon">Monday (Chest &amp; Triceps)</option>
+                            <option value="tue">Tuesday (Back &amp; Biceps)</option>
+                            <option value="wed">Wednesday (Legs &amp; Calves)</option>
+                            <option value="thu">Thursday (Shoulders &amp; Traps)</option>
+                            <option value="fri">Friday (Full Body &amp; Core)</option>
+                            <option value="sat">Saturday (Cardio &amp; Abs)</option>
+                            <option value="sun">Sunday (Rest &amp; Mobility)</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="dialog-actions-row">
+                    <button type="button" class="btn-dialog-cancel" id="gymCancelExBtn">Cancel</button>
+                    <button type="submit" class="btn-dialog-save" id="gymSaveExBtn">Save Exercise</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Gym Modal: Add Video / Guide -->
+        <dialog id="gymVideoModal" class="planner-dialog gym-dialog">
+            <form id="gymVideoForm" method="dialog" class="gym-modal-form">
+                <div class="dialog-header-row">
+                    <h4>Add Video &amp; Guide</h4>
+                    <span class="gym-dialog-badge">Visual Cues</span>
+                </div>
+                <div class="gym-modal-fields">
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Guide Title</span>
+                        <input type="text" id="gymGuideTitleInput" class="gym-text-input"
+                            placeholder="e.g. Dumbbell Chest Fly" required>
+                    </label>
+                    <div class="gym-input-row-2">
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Target Muscle</span>
+                            <input type="text" id="gymGuideMuscleInput" class="gym-text-input"
+                                placeholder="e.g. Pectorals" required>
+                        </label>
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Timer / Duration</span>
+                            <input type="text" id="gymGuideDurationInput" class="gym-text-input"
+                                placeholder="e.g. 0:30">
+                        </label>
+                    </div>
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Video / Demo URL or GIF (Optional)</span>
+                        <input type="url" id="gymGuideUrlInput" class="gym-text-input"
+                            placeholder="https://... (or leave empty for visual guide)">
+                    </label>
+                </div>
+                <div class="dialog-actions-row">
+                    <button type="button" class="btn-dialog-cancel" id="gymCancelVideoBtn">Cancel</button>
+                    <button type="submit" class="btn-dialog-save" id="gymSaveVideoBtn">Add Guide</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Gym Modal: Interactive Demo Player -->
+        <dialog id="gymDemoModal" class="planner-dialog gym-demo-dialog">
+            <div class="gym-demo-player-wrap">
+                <div class="gym-demo-player-header">
+                    <div>
+                        <h3 id="gymDemoTitle" class="gym-demo-heading">Push-Up Demo</h3>
+                        <p id="gymDemoMuscle" class="gym-demo-subheading">Target: Chest &amp; Triceps</p>
+                    </div>
+                    <button type="button" class="btn-close-demo" id="gymCloseDemoBtn" title="Close Video"
+                        aria-label="Close Video">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="gym-demo-canvas-wrap" id="gymDemoCanvas">
+                    <!-- Interactive graphic / video loaded here -->
+                </div>
+                <div class="gym-demo-timer-bar">
+                    <div class="demo-timer-count" id="gymDemoTimer">00:24</div>
+                    <div class="demo-timer-controls">
+                        <button type="button" class="demo-timer-btn" id="gymDemoPlayPauseBtn">Pause</button>
+                        <button type="button" class="demo-timer-btn outline" id="gymDemoResetTimerBtn">Reset</button>
+                        <button type="button" class="demo-timer-btn close-btn" id="gymDemoBottomCloseBtn"
+                            title="Close Video Popup">Close</button>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <!-- Toast notification -->
+        <div id="appToast" class="app-toast" role="status" aria-live="polite"></div>
+
+    </div>
+
+    <!-- Gym Standalone Controller Script -->
+    <script src="gym.js"></script>
+</body>
+
+</html>

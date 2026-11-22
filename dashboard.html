@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dashboard Overview — Digital Weekly Planner</title>
+    <meta name="description" content="Weekly productivity overview, summary metrics and quick shortcuts">
+    <link rel="stylesheet" href="styles.css?v=3.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- App Root Grid -->
+    <div class="planner-root">
+
+        <!-- Left Navigation Rail (Matches Reference Image 1:1) -->
+        <aside class="planner-left-rail no-print" id="plannerLeftRail" aria-label="Planner Side Navigation">
+            <div class="side-navigation">
+                <!-- Organic Vector Silhouette Background (1:1 S-Curve from Reference Image) -->
+                <svg class="rail-organic-bg" viewBox="0 0 78 660" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="railGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#3d46ea" />
+                            <stop offset="25%" stop-color="#323bc7" />
+                            <stop offset="65%" stop-color="#1e2494" />
+                            <stop offset="100%" stop-color="#0a0d33" />
+                        </linearGradient>
+                        <filter id="railShadow" x="-25%" y="-10%" width="160%" height="120%">
+                            <feDropShadow dx="5" dy="8" stdDeviation="14" flood-color="#090c30" flood-opacity="0.38" />
+                        </filter>
+                    </defs>
+                    <path
+                        d="M 0 0 C 0 48, 18 80, 44 95 C 66 107, 78 118, 78 135 L 78 525 C 78 542, 66 553, 44 565 C 18 580, 0 612, 0 660 Z"
+                        fill="url(#railGrad)" filter="url(#railShadow)" />
+                </svg>
+
+                <!-- Navigation Items List (8 Icons matching reference image) -->
+                <nav class="rail-nav-list" role="navigation" aria-label="Planner Navigation">
+                    <!-- 1. Active Squircle with 4 dots (Dashboard) -->
+                    <a href="dashboard.html" class="rail-btn active" aria-label="Dashboard" title="Dashboard">
+                        <div class="rail-squircle">
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                        </div>
+                        <span class="rail-tooltip">Dashboard</span>
+                    </a>
+
+                    <!-- 2. Profile / Account -->
+                    <a href="#profile" class="rail-btn" aria-label="Profile" title="Profile / Account">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4.5"></circle>
+                            <path d="M5.5 20.5c0-3.5 2.8-6 6.5-6s6.5 2.5 6.5 6"></path>
+                        </svg>
+                        <span class="rail-tooltip">Profile</span>
+                    </a>
+
+                    <!-- 3. Money Flow / Analytics -->
+                    <a href="money.html" class="rail-btn" aria-label="Money Flow" title="Money Control">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <span class="rail-tooltip">Money Flow</span>
+                    </a>
+
+                    <!-- 4. Notifications (Bell) -->
+                    <a href="#notifications" class="rail-btn" aria-label="Notifications" title="Notifications">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="rail-tooltip">Notifications</span>
+                    </a>
+
+                    <!-- 5. Daily Schedule (Calendar with dots) -->
+                    <a href="index.html" class="rail-btn" aria-label="Daily Schedule" title="Daily Schedule">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="17" rx="3"></rect>
+                            <line x1="16" y1="2" x2="16" y2="5"></line>
+                            <line x1="8" y1="2" x2="8" y2="5"></line>
+                            <circle cx="8" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="8" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="15" r="1" fill="currentColor"></circle>
+                        </svg>
+                        <span class="rail-tooltip">Daily Schedule</span>
+                    </a>
+
+                    <!-- 6. Messages / Gym (Envelope with Red Notification Dot) -->
+                    <a href="gym.html" class="rail-btn has-badge" aria-label="Gym & Fitness" title="Gym & Fitness">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M3.5 16.75C3.76417 16.75 4.0177 16.7045 4.25319 16.6208C4.31598 17.8073 5.2979 18.75 6.5 18.75C7.74264 18.75 8.75 17.7426 8.75 16.5V7.5C8.75 6.25736 7.74264 5.25 6.5 5.25C5.2979 5.25 4.31598 6.1927 4.25319 7.37916C4.0177 7.29553 3.76417 7.25 3.5 7.25C2.25736 7.25 1.25 8.25736 1.25 9.5V14.5C1.25 15.7426 2.25736 16.75 3.5 16.75Z"
+                                    fill="currentColor"></path>
+                                <path
+                                    d="M15.25 7.5C15.25 6.25736 16.2574 5.25 17.5 5.25C18.7021 5.25 19.684 6.1927 19.7468 7.37916C19.9823 7.29553 20.2358 7.25 20.5 7.25C21.7426 7.25 22.75 8.25736 22.75 9.5V14.5C22.75 15.7426 21.7426 16.75 20.5 16.75C20.2358 16.75 19.9823 16.7045 19.7468 16.6208C19.684 17.8073 18.7021 18.75 17.5 18.75C16.2574 18.75 15.25 17.7426 15.25 16.5V7.5Z"
+                                    fill="currentColor"></path>
+                                <path d="M14 10.5H10V13.5H14V10.5Z" fill="currentColor"></path>
+                            </svg>
+                            <span class="rail-dot-red"></span>
+                        </div>
+                        <span class="rail-tooltip">Gym &amp; Fitness</span>
+                    </a>
+
+                    <!-- 7. Routine / Notes (Document with Pencil) -->
+                    <a href="routine.html" class="rail-btn" aria-label="Routine & Notes" title="Routine & Notes">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="13" x2="13" y2="17"></line>
+                            <line x1="13" y1="13" x2="9" y2="17"></line>
+                        </svg>
+                        <span class="rail-tooltip">Routine &amp; Priorities</span>
+                    </a>
+
+                    <!-- 8. Good Habits / Refresh (Cycle Arrows) -->
+                    <a href="habits.html" class="rail-btn" aria-label="Good Habits" title="Good Habits">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                        <span class="rail-tooltip">Good Habits</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Layout Area for Dashboard -->
+        <main class="planner-main planner-main-column" id="plannerMain">
+
+            <div class="saas-dashboard">
+                <!-- Top Header Navigation -->
+                <header class="dash-top-nav">
+                    <div class="dash-nav-left">
+                        <nav class="dash-nav-tabs" role="tablist">
+                            <button type="button" class="dash-tab active" data-tab="dashboard">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                                    <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                                    <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                                    <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                                    <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                                </svg>
+                                <span>Dashboard</span>
+                            </button>
+                            <button type="button" class="dash-tab" data-tab="workflows">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                    </path>
+                                </svg>
+                                <span>Workflows</span>
+                            </button>
+                            <button type="button" class="dash-tab" data-tab="integrations">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 19 22 19"></polygon>
+                                </svg>
+                                <span>Integrations</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div class="dash-nav-center">
+                        <div class="dash-search-box">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" placeholder="Search or type command" class="dash-search-input"
+                                aria-label="Search">
+                        </div>
+                    </div>
+
+                    <div class="dash-nav-right">
+                        <div class="dash-theme-switch" role="group" aria-label="Theme Toggle">
+                            <button type="button" class="dash-theme-btn active" title="Light theme">
+                                <span class="theme-dot"></span> Light
+                            </button>
+                            <button type="button" class="dash-theme-btn" title="Dark theme">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg> Dark
+                            </button>
+                        </div>
+
+                        <button type="button" class="dash-icon-btn" aria-label="Notifications" title="Notifications">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                        </button>
+
+                        <button type="button" class="dash-icon-btn" aria-label="Settings" title="Settings">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <button type="button" class="dash-pill-btn dash-export-btn" title="Export data (Command+E)">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>Export data</span>
+                            <span class="dash-cmd-badge">⌘E</span>
+                        </button>
+
+                        <button type="button" class="dash-pill-btn dash-add-board-btn">
+                            <span>+ Add new board</span>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Hero Section -->
+                <section class="dash-hero-section">
+                    <div class="dash-hero-left">
+                        <div class="dash-hero-greeting">
+                            <span class="dash-greeting-text">Hi, James!</span>
+                            <span class="dash-greeting-wave">👋</span>
+                            <span class="dash-user-badge">
+                                <span class="dash-user-circle"></span>
+                            </span>
+                        </div>
+                        <h1 class="dash-hero-title">What are your planes for today?</h1>
+                        <p class="dash-hero-subtitle">This platform is designed to revolutionize the way you organize
+                            and access your notes</p>
+                    </div>
+
+                    <div class="dash-hero-right">
+                        <!-- 4 Quick Action Cards -->
+                        <div class="dash-action-card dash-action-add" title="Add new quick item">
+                            <div class="dash-action-plus-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.8" stroke-linecap="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="dash-action-card">
+                            <div class="dash-action-icon-wrap">
+                                <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                                    <rect x="8" y="10" width="32" height="34" rx="4" fill="#ffffff" stroke="#1e2038"
+                                        stroke-width="2.2" />
+                                    <path d="M14 6v8M34 6v8" stroke="#1e2038" stroke-width="2.5"
+                                        stroke-linecap="round" />
+                                    <rect x="12" y="18" width="10" height="10" rx="2" fill="#5051f9" />
+                                    <line x1="26" y1="21" x2="36" y2="21" stroke="#8c90a9" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <line x1="26" y1="26" x2="34" y2="26" stroke="#8c90a9" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <path d="M26 34h10M14 34h6" stroke="#c0c4dc" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <h4 class="dash-action-title">Stay organized</h4>
+                            <p class="dash-action-desc">A clear structure for your notes</p>
+                        </div>
+
+                        <div class="dash-action-card">
+                            <div class="dash-action-icon-wrap">
+                                <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                                    <path d="M4 14C16 12 32 12 44 14" stroke="#1e2038" stroke-width="2"
+                                        stroke-dasharray="3 3" />
+                                    <rect x="8" y="15" width="10" height="14" rx="1.5" transform="rotate(-6 8 15)"
+                                        fill="#ffffff" stroke="#1e2038" stroke-width="2" />
+                                    <rect x="20" y="15" width="10" height="14" rx="1.5" fill="#5051f9"
+                                        fill-opacity="0.15" stroke="#5051f9" stroke-width="2" />
+                                    <rect x="31" y="16" width="10" height="14" rx="1.5" transform="rotate(7 31 16)"
+                                        fill="#ffffff" stroke="#1e2038" stroke-width="2" />
+                                    <circle cx="13" cy="13" r="1.5" fill="#1e2038" />
+                                    <circle cx="25" cy="13" r="1.5" fill="#1e2038" />
+                                    <circle cx="36" cy="13" r="1.5" fill="#1e2038" />
+                                </svg>
+                            </div>
+                            <h4 class="dash-action-title">Sync your notes</h4>
+                            <p class="dash-action-desc">Ensure that notes are synced</p>
+                        </div>
+
+                        <div class="dash-action-card">
+                            <div class="dash-action-icon-wrap">
+                                <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                                    <rect x="8" y="14" width="32" height="26" rx="4" fill="#ffffff" stroke="#1e2038"
+                                        stroke-width="2.2" />
+                                    <path d="M14 14v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4" stroke="#1e2038"
+                                        stroke-width="2.2" />
+                                    <rect x="14" y="22" width="20" height="4" rx="2" fill="#5051f9" />
+                                    <text x="35" y="13" font-size="8" font-family="sans-serif" font-weight="bold"
+                                        fill="#8c90a9">-0x</text>
+                                </svg>
+                            </div>
+                            <h4 class="dash-action-title">Collaborate and share</h4>
+                            <p class="dash-action-desc">Share notes with colleagues</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Middle 3-Column Grid -->
+                <div class="dash-mid-grid">
+                    <!-- Col 1: Notifications -->
+                    <div class="dash-card dash-notif-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title">Notifications</h3>
+                            <button type="button" class="dash-link-btn">Clear</button>
+                        </div>
+
+                        <div class="dash-notif-stack">
+                            <!-- Elevated Item 1 -->
+                            <div class="dash-notif-item dash-notif-elevated">
+                                <div class="dash-notif-top">
+                                    <span class="dash-notif-label">Upcoming event <span
+                                            class="dash-dot-purple">●</span></span>
+                                    <div class="dash-notif-actions">
+                                        <button type="button" class="dash-mini-action" title="More options">•••</button>
+                                        <button type="button" class="dash-mini-action" title="Delete">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                <path
+                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button type="button" class="dash-mini-action" title="Edit">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 20h9"></path>
+                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="dash-notif-event-title">Landing design meeting <span
+                                        class="dash-pipe">|</span> <span class="dash-muted">Time: 120 min</span></div>
+                                <div class="dash-notif-meta">
+                                    <span class="dash-meta-badge">📅 Sat, 10 May</span>
+                                    <span class="dash-meta-badge">⏰ 11 AM - 11:45 AM</span>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="dash-notif-item dash-notif-msg">
+                                <div class="dash-notif-top">
+                                    <span class="dash-notif-label">Message <span class="dash-pipe">|</span> Product
+                                        design</span>
+                                    <button type="button" class="dash-mini-action">•••</button>
+                                </div>
+                                <div class="dash-notif-sender">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    <span>Message from Ken Smith</span>
+                                </div>
+                                <div class="dash-msg-bubble">
+                                    Hey team, just wanted to check in and see how...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Assignments -->
+                    <div class="dash-card dash-assign-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title">Assignments</h3>
+                            <button type="button" class="dash-link-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 20h9"></path>
+                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                        </div>
+
+                        <div class="dash-assign-tags-row">
+                            <div class="dash-tag-group">
+                                <span class="dash-pill-tag tag-blue">Motion design</span>
+                                <span class="dash-pill-tag tag-gray">Logo</span>
+                            </div>
+                            <button type="button" class="dash-mini-action">•••</button>
+                        </div>
+
+                        <h4 class="dash-assign-heading">Design a packaging concept for a new product</h4>
+
+                        <div class="dash-priority-wrap">
+                            <span class="dash-priority-badge priority-high">High</span>
+                        </div>
+
+                        <div class="dash-assign-footer-row">
+                            <span class="dash-category-badge">Package design</span>
+                            <div class="dash-assignee">
+                                <div class="dash-avatar-sm">RL</div>
+                                <span class="dash-assignee-name">Rachel Lee</span>
+                            </div>
+                        </div>
+
+                        <button type="button" class="dash-add-assign-btn">
+                            <span class="dash-btn-plus-icon">+</span>
+                            <span>Add new assignment</span>
+                        </button>
+                    </div>
+
+                    <!-- Col 3: May 2021 Schedule -->
+                    <div class="dash-card dash-schedule-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title">May 2021</h3>
+                            <div class="dash-nav-arrows">
+                                <button type="button" class="dash-arrow-btn" aria-label="Previous week">‹</button>
+                                <button type="button" class="dash-arrow-btn" aria-label="Next week">›</button>
+                            </div>
+                        </div>
+
+                        <div class="dash-week-strip">
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Mon</span>
+                                <span class="dash-day-num">14</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Tue</span>
+                                <span class="dash-day-num">15</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Wed</span>
+                                <span class="dash-day-num">16</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Thr</span>
+                                <span class="dash-day-num">17</span>
+                            </div>
+                            <div class="dash-day-col active">
+                                <span class="dash-day-name">Fr</span>
+                                <span class="dash-day-num">18</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Sat</span>
+                                <span class="dash-day-num">19</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Sun</span>
+                                <span class="dash-day-num">20</span>
+                            </div>
+                        </div>
+
+                        <div class="dash-timeline-list">
+                            <!-- Timeline Event 1 -->
+                            <div class="dash-timeline-divider">
+                                <span class="dash-time-label">04:30-05:00 PM</span>
+                                <span class="dash-time-line"></span>
+                            </div>
+                            <div class="dash-sched-item">
+                                <div class="dash-sched-icon icon-hexagon">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <path
+                                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="dash-sched-info">
+                                    <div class="dash-sched-title">Team meeting</div>
+                                    <div class="dash-sched-sub">12:00 - 12:30 • UX/UI design</div>
+                                </div>
+                                <button type="button" class="dash-mini-action">⋮</button>
+                            </div>
+
+                            <!-- Timeline Event 2 -->
+                            <div class="dash-timeline-divider">
+                                <span class="dash-time-label">11:30-12:30 PM</span>
+                                <span class="dash-time-line"></span>
+                            </div>
+                            <div class="dash-sched-item">
+                                <div class="dash-sched-icon icon-briefcase">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                </div>
+                                <div class="dash-sched-info">
+                                    <div class="dash-sched-title">Meeting with new client</div>
+                                    <div class="dash-sched-sub">12:30 - 01:30 PM • Job interview</div>
+                                </div>
+                                <button type="button" class="dash-mini-action">⋮</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom 3-Column Grid -->
+                <div class="dash-bottom-grid">
+                    <!-- Col 1: Today tasks (Wide) -->
+                    <div class="dash-card dash-tasks-card">
+                        <div class="dash-card-header">
+                            <div class="dash-tasks-header-left">
+                                <h3 class="dash-card-title">Today tasks</h3>
+                                <div class="dash-avatar-stack">
+                                    <span class="dash-stack-avatar dash-avatar-indigo">JD</span>
+                                    <span class="dash-stack-avatar dash-avatar-cyan">MK</span>
+                                    <span class="dash-stack-avatar dash-avatar-amber">AL</span>
+                                    <span class="dash-stack-avatar dash-stack-plus">+</span>
+                                </div>
+                            </div>
+
+                            <div class="dash-tasks-header-right">
+                                <button type="button" class="dash-view-btn active" title="List view">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2">
+                                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                    </svg>
+                                </button>
+                                <button type="button" class="dash-view-btn" title="Kanban view">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2">
+                                        <rect x="3" y="3" width="7" height="18" rx="1"></rect>
+                                        <rect x="14" y="3" width="7" height="18" rx="1"></rect>
+                                    </svg>
+                                </button>
+                                <button type="button" class="dash-link-btn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 20h9"></path>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                    <span>Edit</span>
+                                </button>
+                                <button type="button" class="dash-link-btn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
+                                    <span>Share</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="dash-tasks-table">
+                            <!-- Task 1 -->
+                            <div class="dash-task-row">
+                                <div class="dash-task-main">
+                                    <div class="dash-task-title">Conduct research</div>
+                                    <div class="dash-task-time">4 May, 09:20 AM</div>
+                                </div>
+                                <div class="dash-task-duration">
+                                    <span class="dash-duration-pill">Duration 02 h 45 m</span>
+                                </div>
+                                <div class="dash-task-progress-col">
+                                    <span class="dash-pct-label">90%</span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill dash-progress-w90"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-task-meta-col">
+                                    <div class="dash-avatar-tiny">4</div>
+                                    <span class="dash-date-badge">16</span>
+                                </div>
+                            </div>
+
+                            <!-- Task 2 -->
+                            <div class="dash-task-row">
+                                <div class="dash-task-main">
+                                    <div class="dash-task-title">Schedule a meeting</div>
+                                    <div class="dash-task-time">14 May, 12:45 AM</div>
+                                </div>
+                                <div class="dash-task-duration">
+                                    <span class="dash-duration-pill">Duration 06 h 55 m</span>
+                                </div>
+                                <div class="dash-task-progress-col">
+                                    <span class="dash-pct-label">50%</span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill dash-progress-w50"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-task-meta-col">
+                                    <div class="dash-avatar-tiny">4</div>
+                                    <span class="dash-date-badge">3 June</span>
+                                </div>
+                            </div>
+
+                            <!-- Task 3 -->
+                            <div class="dash-task-row">
+                                <div class="dash-task-main">
+                                    <div class="dash-task-title">Send out reminders</div>
+                                    <div class="dash-task-time">21 May, 10:30 AM</div>
+                                </div>
+                                <div class="dash-task-duration">
+                                    <span class="dash-duration-pill">Duration 01 h 30 m</span>
+                                </div>
+                                <div class="dash-task-progress-col">
+                                    <span class="dash-pct-label">10%</span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill dash-progress-w10"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-task-meta-col">
+                                    <div class="dash-avatar-tiny">16</div>
+                                    <span class="dash-date-badge">3 June</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Go premium! (Gradient Promo Card) -->
+                    <div class="dash-card dash-premium-card">
+                        <div class="dash-premium-gift-wrap">
+                            <svg width="78" height="78" viewBox="0 0 84 84" fill="none">
+                                <ellipse cx="42" cy="74" rx="28" ry="6" fill="#1b1c38" fill-opacity="0.3" />
+                                <rect x="22" y="38" width="40" height="32" rx="4" fill="#ffffff" />
+                                <rect x="38" y="38" width="8" height="32" fill="#3e41d8" />
+                                <rect x="18" y="28" width="48" height="12" rx="3" transform="rotate(-6 18 28)"
+                                    fill="#ffffff" stroke="#e0e3fc" stroke-width="1.5" />
+                                <rect x="38" y="26" width="8" height="14" rx="1" transform="rotate(-6 38 26)"
+                                    fill="#3e41d8" />
+                                <path d="M36 22C32 14 24 16 28 22C32 26 38 26 38 26" stroke="#ffffff" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <path d="M46 22C50 14 58 16 54 22C50 26 44 26 44 26" stroke="#ffffff" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <path d="M14 18l3 3m-3 0l3-3M68 22l4 4m-4 0l4-4M58 8l2 2m-2 0l2-2" stroke="#ffffff"
+                                    stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="dash-premium-title">Go premium!</h3>
+                        <p class="dash-premium-desc">Gain access to a range of benefits designed to enhance your user
+                            experience</p>
+                        <button type="button" class="dash-premium-btn">Find out more</button>
+                    </div>
+
+                    <!-- Col 3: Mini Stats Donut Rings & Board Meeting -->
+                    <div class="dash-stats-col">
+                        <!-- Top: 2 Donut Rings -->
+                        <div class="dash-card dash-donuts-card">
+                            <div class="dash-donut-box">
+                                <div class="dash-donut-chart">
+                                    <svg width="58" height="58" viewBox="0 0 36 36">
+                                        <path class="donut-bg"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#e2e8f0" stroke-width="3.5" />
+                                        <path class="donut-fill green" stroke-dasharray="90, 100"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="dash-donut-val">90%</span>
+                                </div>
+                                <div class="dash-donut-content">
+                                    <div class="dash-donut-category cat-teal">DATA RESEARCH</div>
+                                    <div class="dash-donut-name">Marketing</div>
+                                    <div class="dash-donut-sub">You marked 5/5</div>
+                                    <div class="dash-donut-status green">All assignments are done!</div>
+                                </div>
+                            </div>
+
+                            <div class="dash-donut-box">
+                                <div class="dash-donut-chart">
+                                    <svg width="58" height="58" viewBox="0 0 36 36">
+                                        <path class="donut-bg"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#e2e8f0" stroke-width="3.5" />
+                                        <path class="donut-fill coral" stroke-dasharray="65, 100"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#f43f5e" stroke-width="3.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="dash-donut-val">65%</span>
+                                </div>
+                                <div class="dash-donut-content">
+                                    <div class="dash-donut-category cat-coral">UX/UI DESIGN</div>
+                                    <div class="dash-donut-name">Typography</div>
+                                    <div class="dash-donut-sub">You marked 3/5</div>
+                                    <div class="dash-donut-status coral">2 assignments left</div>
+                                    <button type="button" class="dash-btn-check">Check</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom: Board meeting -->
+                        <div class="dash-card dash-meeting-card">
+                            <div class="dash-card-header">
+                                <h3 class="dash-card-title">Board meeting</h3>
+                                <button type="button" class="dash-link-btn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 20h9"></path>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                    <span>Edit</span>
+                                </button>
+                            </div>
+
+                            <div class="dash-meeting-date">
+                                <span class="dash-dot-purple">●</span>
+                                <span>March 24 at 4:00 PM</span>
+                            </div>
+
+                            <p class="dash-meeting-desc">Meeting with John Smith, 4th floor, room 159</p>
+
+                            <div class="dash-meeting-actions">
+                                <button type="button" class="dash-btn-pill-gray">Reschedule</button>
+                                <button type="button" class="dash-btn-pill-purple">Accept invite</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden compatibility anchors for dynamic script hooks -->
+                <div class="is-hidden" aria-hidden="true">
+                    <span id="dashTasksStat">0/0</span>
+                    <span id="dashTaskPct">0% completed</span>
+                    <span id="dashHabitsStat">0 checkins</span>
+                    <span id="dashGymStat">0 exercises</span>
+                    <span id="dashMoneyStat">₹0.00</span>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Toast notification -->
+        <div id="appToast" class="app-toast" role="status" aria-live="polite"></div>
+
+    </div>
+
+    <!-- Dashboard Standalone Controller Script -->
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Money Flow &amp; Budget — Digital Weekly Planner</title>
+    <meta name="description" content="Personal budget, weekly income & expense tracking and savings goals">
+    <link rel="stylesheet" href="styles.css?v=3.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- App Root Grid -->
+    <div class="planner-root">
+
+        <!-- Left Navigation Rail (Matches Reference Image 1:1) -->
+        <aside class="planner-left-rail no-print" id="plannerLeftRail" aria-label="Planner Side Navigation">
+            <div class="side-navigation">
+                <!-- Organic Vector Silhouette Background (1:1 S-Curve from Reference Image) -->
+                <svg class="rail-organic-bg" viewBox="0 0 78 660" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="railGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#3d46ea" />
+                            <stop offset="25%" stop-color="#323bc7" />
+                            <stop offset="65%" stop-color="#1e2494" />
+                            <stop offset="100%" stop-color="#0a0d33" />
+                        </linearGradient>
+                        <filter id="railShadow" x="-25%" y="-10%" width="160%" height="120%">
+                            <feDropShadow dx="5" dy="8" stdDeviation="14" flood-color="#090c30" flood-opacity="0.38" />
+                        </filter>
+                    </defs>
+                    <path
+                        d="M 0 0 C 0 48, 18 80, 44 95 C 66 107, 78 118, 78 135 L 78 525 C 78 542, 66 553, 44 565 C 18 580, 0 612, 0 660 Z"
+                        fill="url(#railGrad)" filter="url(#railShadow)" />
+                </svg>
+
+                <!-- Navigation Items List (8 Icons matching reference image) -->
+                <nav class="rail-nav-list" role="navigation" aria-label="Planner Navigation">
+                    <!-- 1. Squircle with 4 dots (Dashboard) -->
+                    <a href="dashboard.html" class="rail-btn has-squircle" aria-label="Dashboard" title="Dashboard">
+                        <div class="rail-squircle">
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                        </div>
+                        <span class="rail-tooltip">Dashboard</span>
+                    </a>
+
+                    <!-- 2. Profile / Account -->
+                    <a href="#profile" class="rail-btn" aria-label="Profile" title="Profile / Account">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4.5"></circle>
+                            <path d="M5.5 20.5c0-3.5 2.8-6 6.5-6s6.5 2.5 6.5 6"></path>
+                        </svg>
+                        <span class="rail-tooltip">Profile</span>
+                    </a>
+
+                    <!-- 3. Money Flow / Analytics -->
+                    <a href="money.html" class="rail-btn active" aria-label="Money Flow" title="Money Control">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <span class="rail-tooltip">Money Flow</span>
+                    </a>
+
+                    <!-- 4. Notifications (Bell) -->
+                    <a href="#notifications" class="rail-btn" aria-label="Notifications" title="Notifications">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="rail-tooltip">Notifications</span>
+                    </a>
+
+                    <!-- 5. Daily Schedule (Calendar with dots) -->
+                    <a href="index.html" class="rail-btn" aria-label="Daily Schedule" title="Daily Schedule">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="17" rx="3"></rect>
+                            <line x1="16" y1="2" x2="16" y2="5"></line>
+                            <line x1="8" y1="2" x2="8" y2="5"></line>
+                            <circle cx="8" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="8" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="15" r="1" fill="currentColor"></circle>
+                        </svg>
+                        <span class="rail-tooltip">Daily Schedule</span>
+                    </a>
+
+                    <!-- 6. Messages / Gym (Envelope with Red Notification Dot) -->
+                    <a href="gym.html" class="rail-btn has-badge" aria-label="Gym & Fitness" title="Gym & Fitness">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M3.5 16.75C3.76417 16.75 4.0177 16.7045 4.25319 16.6208C4.31598 17.8073 5.2979 18.75 6.5 18.75C7.74264 18.75 8.75 17.7426 8.75 16.5V7.5C8.75 6.25736 7.74264 5.25 6.5 5.25C5.2979 5.25 4.31598 6.1927 4.25319 7.37916C4.0177 7.29553 3.76417 7.25 3.5 7.25C2.25736 7.25 1.25 8.25736 1.25 9.5V14.5C1.25 15.7426 2.25736 16.75 3.5 16.75Z"
+                                    fill="currentColor"></path>
+                                <path
+                                    d="M15.25 7.5C15.25 6.25736 16.2574 5.25 17.5 5.25C18.7021 5.25 19.684 6.1927 19.7468 7.37916C19.9823 7.29553 20.2358 7.25 20.5 7.25C21.7426 7.25 22.75 8.25736 22.75 9.5V14.5C22.75 15.7426 21.7426 16.75 20.5 16.75C20.2358 16.75 19.9823 16.7045 19.7468 16.6208C19.684 17.8073 18.7021 18.75 17.5 18.75C16.2574 18.75 15.25 17.7426 15.25 16.5V7.5Z"
+                                    fill="currentColor"></path>
+                                <path d="M14 10.5H10V13.5H14V10.5Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <span class="rail-tooltip">Gym &amp; Fitness</span>
+                    </a>
+
+                    <!-- 7. Routine / Notes (Document with Pencil) -->
+                    <a href="routine.html" class="rail-btn" aria-label="Routine & Notes" title="Routine & Notes">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="13" x2="13" y2="17"></line>
+                            <line x1="13" y1="13" x2="9" y2="17"></line>
+                        </svg>
+                        <span class="rail-tooltip">Routine &amp; Priorities</span>
+                    </a>
+
+                    <!-- 8. Good Habits / Refresh (Cycle Arrows) -->
+                    <a href="habits.html" class="rail-btn" aria-label="Good Habits" title="Good Habits">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                        <span class="rail-tooltip">Good Habits</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Layout Area for Money Flow Page -->
+        <main class="planner-main planner-main-column" id="plannerMain">
+
+            <div class="planner-paper-sheet view-panel-sheet money-view-sheet">
+
+                <!-- Header Row -->
+                <div class="view-panel-header">
+                    <div class="view-panel-header-left">
+                        <div class="view-panel-icon money-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M14.8 9A2 2 0 0 0 13 8h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1-1.8-1">
+                                </path>
+                                <path d="M12 6v2m0 8v2"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="view-panel-title">Money Flow &amp; Budget</h1>
+                            <p class="view-panel-subtitle">Personal budget, weekly income &amp; expense tracking and
+                                savings goals</p>
+                        </div>
+                    </div>
+                    <div class="money-header-actions">
+                        <button type="button" class="gym-btn-outline" id="moneyClearBtn"
+                            title="Clear all transactions">Clear</button>
+                        <button type="button" class="gym-btn-outline" id="moneyResetBtn"
+                            title="Reset sample transactions">Reset</button>
+                        <a href="index.html" class="btn-open-daily" title="Go to Daily Planner">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>Open Daily Planner</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4 Financial Summary Stat Cards -->
+                <div class="money-stats-grid">
+                    <!-- Balance -->
+                    <div class="money-stat-card">
+                        <div class="money-stat-header">
+                            <span class="money-stat-label">Net Balance</span>
+                            <div class="money-stat-icon-wrap balance">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="money-stat-value" id="moneyTotalBalance">₹0.00</div>
+                        <span class="money-stat-subtext">Total available funds</span>
+                    </div>
+
+                    <!-- Income -->
+                    <div class="money-stat-card">
+                        <div class="money-stat-header">
+                            <span class="money-stat-label">Total Income</span>
+                            <div class="money-stat-icon-wrap income">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <polyline points="18 15 12 9 6 15"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="money-stat-value money-val-income" id="moneyTotalIncome">+₹0.00</div>
+                        <span class="money-stat-subtext">Earnings &amp; credits</span>
+                    </div>
+
+                    <!-- Expenses -->
+                    <div class="money-stat-card">
+                        <div class="money-stat-header">
+                            <span class="money-stat-label">Total Expenses</span>
+                            <div class="money-stat-icon-wrap expense">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="money-stat-value money-val-expense" id="moneyTotalExpense">-₹0.00</div>
+                        <span class="money-stat-subtext">Outflows &amp; spending</span>
+                    </div>
+
+                    <!-- Savings -->
+                    <div class="money-stat-card">
+                        <div class="money-stat-header">
+                            <span class="money-stat-label">Net Savings</span>
+                            <div class="money-stat-icon-wrap savings">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="money-stat-value money-val-savings" id="moneyNetSavings">₹0.00</div>
+                        <span class="money-stat-subtext">Retained capital</span>
+                    </div>
+                </div>
+
+                <!-- Budget & Savings Progress Bars -->
+                <div class="money-bars-grid">
+                    <!-- Budget Limit Card -->
+                    <div class="money-bar-card">
+                        <div class="money-bar-header">
+                            <span class="money-bar-title">Monthly Budget Spend</span>
+                            <span class="money-bar-ratio" id="moneyBudgetRatio">₹0 / ₹25000 (0%)</span>
+                        </div>
+                        <div class="money-progress-bg">
+                            <div class="money-progress-fill budget w-0" id="moneyBudgetBar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Savings Goal Card -->
+                    <div class="money-bar-card">
+                        <div class="money-bar-header">
+                            <span class="money-bar-title">Monthly Savings Target</span>
+                            <span class="money-bar-ratio" id="moneySavingsRatio">₹0 / ₹10000 (0%)</span>
+                        </div>
+                        <div class="money-progress-bg">
+                            <div class="money-progress-fill savings w-0" id="moneySavingsBar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transaction Log Table Card -->
+                <div class="money-tx-card">
+                    <div class="money-tx-header">
+                        <div class="money-tx-heading-wrap">
+                            <h2 class="money-tx-heading">Recent Transactions</h2>
+                            <span class="gym-items-count-badge" id="moneyTxCountBadge">0 records</span>
+                        </div>
+                        <button type="button" class="gym-btn-solid gym-btn-sm" id="moneyAddTxBtn">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span>Add Transaction</span>
+                        </button>
+                    </div>
+
+                    <table class="money-tx-table">
+                        <thead>
+                            <tr>
+                                <th class="money-th-date">Date</th>
+                                <th class="money-th-desc">Description</th>
+                                <th class="money-th-type">Type</th>
+                                <th class="money-th-amount">Amount</th>
+                                <th class="money-th-action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="moneyTxTableBody">
+                            <!-- Transactions rendered by money.js -->
+                        </tbody>
+                    </table>
+
+                    <div id="moneyTxEmpty" class="money-empty-state">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" class="money-empty-icon">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M14.8 9A2 2 0 0 0 13 8h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1-1.8-1"></path>
+                        </svg>
+                        <span class="money-empty-title">No transactions recorded yet</span>
+                        <span class="money-empty-desc">Click "+ Add Transaction" above to log income or expenses.</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+
+        <!-- Modal: Add Transaction -->
+        <dialog id="moneyTxModal" class="planner-dialog gym-dialog">
+            <form id="moneyTxForm" method="dialog" class="gym-modal-form">
+                <div class="dialog-header-row">
+                    <h4>Add Transaction</h4>
+                    <span class="gym-dialog-badge">Money Flow</span>
+                </div>
+                <div class="gym-modal-fields">
+                    <div class="gym-input-row-2">
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Type</span>
+                            <select id="moneyTxTypeSelect" class="gym-select-input">
+                                <option value="expense">Expense (-)</option>
+                                <option value="income">Income (+)</option>
+                            </select>
+                        </label>
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Amount (₹)</span>
+                            <input type="number" step="0.01" min="0.01" id="moneyTxAmountInput" class="gym-text-input"
+                                placeholder="e.g. 500.00" required>
+                        </label>
+                    </div>
+
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Description / Title</span>
+                        <input type="text" id="moneyTxTitleInput" class="gym-text-input"
+                            placeholder="e.g. Weekly Groceries" required>
+                    </label>
+
+                    <div class="gym-input-row-2">
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Category</span>
+                            <select id="moneyTxCategorySelect" class="gym-select-input">
+                                <option value="Salary">Salary / Income</option>
+                                <option value="Groceries">Groceries</option>
+                                <option value="Utilities">Utilities &amp; Bills</option>
+                                <option value="Food & Dining">Food &amp; Dining</option>
+                                <option value="Fitness">Fitness &amp; Health</option>
+                                <option value="Shopping">Shopping &amp; Leisure</option>
+                                <option value="Savings">Savings &amp; Investment</option>
+                                <option value="General">General</option>
+                            </select>
+                        </label>
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Date</span>
+                            <input type="date" id="moneyTxDateInput" class="gym-text-input">
+                        </label>
+                    </div>
+                </div>
+                <div class="dialog-actions-row">
+                    <button type="button" class="btn-dialog-cancel" id="moneyCancelTxBtn">Cancel</button>
+                    <button type="submit" class="btn-dialog-save" id="moneySaveTxBtn">Save Transaction</button>
+                </div>
+            </form>
+        </dialog>
+    </div>
+
+    <!-- Money Standalone Controller Script -->
+    <script src="money.js"></script>
+</body>
+
+</html>

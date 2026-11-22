@@ -1,0 +1,15 @@
+# Dependencies & Temporary files
+node_modules/
+scratch/
+.vscode/
+*.log
+*.tmp
+
+# Operating System files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Scratch data / Excel export
+Data.xlsx
+~$*

@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Digital Weekly Planner</title>
+    <meta name="description"
+        content="Clean, aesthetic, and interactive digital weekly planner with habit tracker, daily progress donut charts, priorities, and notes.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Brand Logo Favicon -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
+    <link rel="stylesheet" href="styles.css?v=3.2">
+    <!-- Google Identity Services (Google Drive OAuth) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <div class="planner-root">
+
+        <!-- Left Navigation Rail (Matches Reference Image 1:1) -->
+        <aside class="planner-left-rail no-print" id="plannerLeftRail" aria-label="Planner Side Navigation">
+            <div class="side-navigation">
+                <!-- Organic Vector Silhouette Background (1:1 S-Curve from Reference Image) -->
+                <svg class="rail-organic-bg" viewBox="0 0 78 660" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="railGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#3d46ea" />
+                            <stop offset="25%" stop-color="#323bc7" />
+                            <stop offset="65%" stop-color="#1e2494" />
+                            <stop offset="100%" stop-color="#0a0d33" />
+                        </linearGradient>
+                        <filter id="railShadow" x="-25%" y="-10%" width="160%" height="120%">
+                            <feDropShadow dx="5" dy="8" stdDeviation="14" flood-color="#090c30" flood-opacity="0.38" />
+                        </filter>
+                    </defs>
+                    <path d="M 0 0 C 0 48, 18 80, 44 95 C 66 107, 78 118, 78 135 L 78 525 C 78 542, 66 553, 44 565 C 18 580, 0 612, 0 660 Z" fill="url(#railGrad)"
+                        filter="url(#railShadow)" />
+                </svg>
+
+                <!-- Navigation Items List (8 Icons matching reference image) -->
+                <nav class="rail-nav-list" role="navigation" aria-label="Planner Navigation">
+                    <!-- 1. Active Squircle with 4 dots (Dashboard) -->
+                    <a href="dashboard.html" class="rail-btn" aria-label="Dashboard" title="Dashboard">
+                        <div class="rail-squircle">
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                            <span class="sq-dot dark"></span>
+                            <span class="sq-dot light"></span>
+                        </div>
+                        <span class="rail-tooltip">Dashboard</span>
+                    </a>
+
+                    <!-- 2. Profile / Account -->
+                    <a href="#profile" class="rail-btn" aria-label="Profile" title="Profile / Account">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4.5"></circle>
+                            <path d="M5.5 20.5c0-3.5 2.8-6 6.5-6s6.5 2.5 6.5 6"></path>
+                        </svg>
+                        <span class="rail-tooltip">Profile</span>
+                    </a>
+
+                    <!-- 3. Money Flow / Analytics (Rupee Icon) -->
+                    <a href="money.html" class="rail-btn" aria-label="Money Flow" title="Money Control">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <span class="rail-tooltip">Money Flow</span>
+                    </a>
+
+                    <!-- 4. Notifications (Bell) -->
+                    <a href="#notifications" class="rail-btn" aria-label="Notifications" title="Notifications">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="rail-tooltip">Notifications</span>
+                    </a>
+
+                    <!-- 5. Daily Schedule (Calendar with dots - Active on index.html) -->
+                    <a href="index.html" class="rail-btn active" data-rail-target="daily-routine" aria-label="Daily Schedule"
+                        title="Daily Schedule">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="17" rx="3"></rect>
+                            <line x1="16" y1="2" x2="16" y2="5"></line>
+                            <line x1="8" y1="2" x2="8" y2="5"></line>
+                            <circle cx="8" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="11" r="1" fill="currentColor"></circle>
+                            <circle cx="8" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="15" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="15" r="1" fill="currentColor"></circle>
+                        </svg>
+                        <span class="rail-tooltip">Daily Schedule</span>
+                    </a>
+
+                    <!-- 6. Messages / Gym (Envelope with Red Notification Dot) -->
+                    <a href="gym.html" class="rail-btn has-badge" aria-label="Gym & Fitness"
+                        title="Gym & Fitness">
+                        <div class="rail-icon-wrap">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M3.5 16.75C3.76417 16.75 4.0177 16.7045 4.25319 16.6208C4.31598 17.8073 5.2979 18.75 6.5 18.75C7.74264 18.75 8.75 17.7426 8.75 16.5V7.5C8.75 6.25736 7.74264 5.25 6.5 5.25C5.2979 5.25 4.31598 6.1927 4.25319 7.37916C4.0177 7.29553 3.76417 7.25 3.5 7.25C2.25736 7.25 1.25 8.25736 1.25 9.5V14.5C1.25 15.7426 2.25736 16.75 3.5 16.75Z"
+                                    fill="currentColor"></path>
+                                <path
+                                    d="M15.25 7.5C15.25 6.25736 16.2574 5.25 17.5 5.25C18.7021 5.25 19.684 6.1927 19.7468 7.37916C19.9823 7.29553 20.2358 7.25 20.5 7.25C21.7426 7.25 22.75 8.25736 22.75 9.5V14.5C22.75 15.7426 21.7426 16.75 20.5 16.75C20.2358 16.75 19.9823 16.7045 19.7468 16.6208C19.684 17.8073 18.7021 18.75 17.5 18.75C16.2574 18.75 15.25 17.7426 15.25 16.5V7.5Z"
+                                    fill="currentColor"></path>
+                                <path d="M14 10.5H10V13.5H14V10.5Z" fill="currentColor"></path>
+                            </svg>
+                            <span class="rail-dot-red"></span>
+                        </div>
+                        <span class="rail-tooltip">Gym &amp; Fitness</span>
+                    </a>
+
+                    <!-- 7. Routine / Notes (Document with Pencil) -->
+                    <a href="routine.html" class="rail-btn" aria-label="Routine & Notes"
+                        title="Routine & Notes">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="13" x2="13" y2="17"></line>
+                            <line x1="13" y1="13" x2="9" y2="17"></line>
+                        </svg>
+                        <span class="rail-tooltip">Routine &amp; Priorities</span>
+                    </a>
+
+                    <!-- 8. Good Habits / Refresh (Cycle Arrows) -->
+                    <a href="habits.html" class="rail-btn" aria-label="Good Habits"
+                        title="Good Habits">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                        <span class="rail-tooltip">Good Habits</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Top Floating Toolbar (Hidden during print) -->
+        <header class="app-toolbar no-print" role="banner">
+            <!-- Left Section: Logo only (matches reference screenshot) -->
+            <div class="toolbar-section toolbar-left">
+                <!-- App Brand Logo (Top Left) -->
+                <div class="toolbar-brand-wrap" title="Digital Weekly Planner">
+                    <img src="Logo.png" alt="Weekly Planner Logo" class="toolbar-logo-img" width="46" height="46">
+                </div>
+
+                <!-- Hidden elements for app.js script compatibility -->
+                <div class="toolbar-compat-hidden" aria-hidden="true">
+                    <button id="prevWeekBtn" aria-label="Previous Week"></button>
+                    <button id="nextWeekBtn" aria-label="Next Week"></button>
+                    <span id="weekRangeLabel"></span>
+                    <span id="currentWeekTag"></span>
+                    <div id="autosaveBadge"><span id="autosaveText"></span></div>
+                    <span id="sliderActiveMonthTitle"></span>
+                    <div id="sliderCurrentMonthBadge"></div>
+                    <button id="sliderTodayJumpBtn"></button>
+                </div>
+            </div>
+
+            <!-- Right Section: Share Button (Dropdown Menu) & Reset Button -->
+            <div class="toolbar-section toolbar-right">
+                <!-- Share Dropdown Container -->
+                <div class="share-dropdown-wrap" id="shareDropdownWrap">
+                    <button type="button" class="tool-btn share-trigger-btn" id="shareTriggerBtn" aria-haspopup="true"
+                        aria-expanded="false" title="Share & export options">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <span class="btn-caption">Share</span>
+                        <svg class="dropdown-caret-icon" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div class="share-dropdown-menu" id="shareDropdownMenu" role="menu" aria-label="Share options">
+                        <!-- 1. Print / PDF -->
+                        <button type="button" class="share-menu-item" id="printBtn" role="menuitem"
+                            title="Print planner or save as PDF">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2">
+                                </path>
+                                <rect x="6" y="14" width="12" height="8"></rect>
+                            </svg>
+                            <span>Print / PDF</span>
+                        </button>
+
+                        <!-- 2. Excel -->
+                        <button type="button" class="share-menu-item" id="excelExportBtn" role="menuitem"
+                            title="Save app data in Excel file (.xls)">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="8" y1="13" x2="16" y2="13"></line>
+                                <line x1="8" y1="17" x2="16" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <span>Excel</span>
+                        </button>
+
+                        <!-- 3. Google Drive -->
+                        <button type="button" class="share-menu-item gdrive-share-item" id="gdriveBtn" role="menuitem"
+                            title="Google Drive Cloud Backup & Sync">
+                            <svg width="15" height="15" viewBox="0 0 87.3 78" class="gdrive-svg-icon">
+                                <path
+                                    d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.45z"
+                                    fill="#0066da" />
+                                <path
+                                    d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44.05c-.8 1.35-1.2 2.9-1.2 4.45h27.5z"
+                                    fill="#00ac47" />
+                                <path
+                                    d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.35 1.2-2.9 1.2-4.45h-27.5l5.85 10.15z"
+                                    fill="#ea4335" />
+                                <path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.45-1.2h-18.5c-1.55 0-3.1.4-4.45 1.2z"
+                                    fill="#00832d" />
+                                <path
+                                    d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.45 1.2h50.8c1.55 0 3.1-.4 4.45-1.2z"
+                                    fill="#2684fc" />
+                                <path
+                                    d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.45z"
+                                    fill="#ffba00" />
+                            </svg>
+                            <span>Google Drive</span>
+                            <span id="gdriveStatusDot" class="status-dot" title="Drive: Not connected"></span>
+                        </button>
+
+                        <div class="share-menu-divider"></div>
+
+                        <!-- 4. Export -->
+                        <button type="button" class="share-menu-item" id="exportBtn" role="menuitem"
+                            title="Export planner data to Excel, CSV, JSON or Google Drive">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>Export</span>
+                        </button>
+
+                        <!-- 5. Restore -->
+                        <label class="share-menu-item share-menu-label" role="menuitem"
+                            title="Restore planner data from JSON">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <span>Restore</span>
+                            <input type="file" id="importInput" accept=".json" class="file-input-hidden">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Reset Button with 2-Step Confirmation Guard (Placed on the right side of Share button) -->
+                <div class="reset-btn-wrap" id="resetWrap">
+                    <button id="resetBtn" class="tool-btn icon-text danger" title="Reset to template defaults"
+                        aria-haspopup="true">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
+                        <span class="btn-caption">Reset</span>
+                    </button>
+                    <div class="reset-confirm-inline" id="resetConfirmInline" role="alert"
+                        aria-label="Confirm reset">
+                        <span class="reset-confirm-prompt">Sure?</span>
+                        <button type="button" class="reset-confirm-btn reset-confirm-yes" id="resetConfirmYesBtn"
+                            title="Confirm reset">Yes</button>
+                        <button type="button" class="reset-confirm-btn reset-confirm-no" id="resetConfirmNoBtn"
+                            title="Cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Planner Document -->
+        <main class="planner-main" id="plannerMain">
+
+            <!-- Central Planner Page Sheet -->
+            <div class="planner-paper-sheet">
+
+                <!-- Mobile Day Filter Navigator (Optimized for Vivo V50 & Mobile Screens) -->
+                <div class="mobile-day-filter-wrap no-print" id="mobileDayFilterWrap">
+                    <nav class="mobile-day-filter-bar" id="mobileDayFilterBar" aria-label="Filter days on mobile">
+                        <button type="button" class="day-filter-btn active" data-day="all">All Days</button>
+                        <button type="button" class="day-filter-btn" data-day="mon">Mon</button>
+                        <button type="button" class="day-filter-btn" data-day="tue">Tue</button>
+                        <button type="button" class="day-filter-btn" data-day="wed">Wed</button>
+                        <button type="button" class="day-filter-btn" data-day="thu">Thu</button>
+                        <button type="button" class="day-filter-btn" data-day="fri">Fri</button>
+                        <button type="button" class="day-filter-btn" data-day="sat">Sat</button>
+                        <button type="button" class="day-filter-btn" data-day="sun">Sun</button>
+                    </nav>
+                </div>
+
+                <!-- Sheet Header Strip (Matches attached reference screenshot) -->
+                <div class="sheet-header-strip no-print" id="sheetHeaderStrip"
+                    aria-label="Planner header and navigation">
+                    <!-- Left: Month Prev, Today, Date Picker -->
+                    <div class="sheet-header-left">
+                        <button type="button" class="sheet-pill-btn" id="sliderPrevMonthBtn"
+                            title="Jump to previous month" aria-label="Previous month">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                            <span id="sliderPrevMonthLabel">Oct</span>
+                        </button>
+                        <button type="button" id="todayBtn" class="sheet-pill-btn today-btn"
+                            title="Jump to today">Today</button>
+                        <div class="sheet-goto-date-wrap">
+                            <button type="button" id="goToDateBtn" class="sheet-icon-btn goto-date-btn"
+                                title="Choose date or jump to date" aria-label="Choose date or jump to date">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </button>
+                            <input type="date" id="goToDateInput" class="goto-date-picker-input"
+                                aria-label="Select date to jump to" tabindex="-1">
+                        </div>
+                    </div>
+
+                    <!-- Progress Summary -->
+                    <div class="sheet-progress-wrap" id="sheetProgressWrap" title="Progress">
+                        <div class="sheet-stat-meta">
+                            <span class="sheet-stat-title">Progress</span>
+                            <span class="sheet-stat-value" id="overallStat">0% (0/0)</span>
+                        </div>
+                        <div class="sheet-stat-track">
+                            <div class="sheet-stat-fill w-0" id="overallBarFill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Center: Digital WEEKLY PLANNER -->
+                    <div class="sheet-header-center" aria-label="Digital Weekly Planner">
+                        <span class="sheet-brand-cursive">Digital</span>
+                        <span class="sheet-brand-title">WEEKLY PLANNER</span>
+                    </div>
+
+                    <!-- Right: Next Month -->
+                    <div class="sheet-header-right">
+                        <button type="button" class="sheet-pill-btn" id="sliderNextMonthBtn" title="Jump to next month"
+                            aria-label="Next month">
+                            <span id="sliderNextMonthLabel">Dec</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 7 Days Interactive Slider: Monday to Sunday -->
+                <div class="days-slider-wrapper">
+                    <button type="button" class="days-slider-nav-btn prev-day-btn no-print" id="sliderPrevDayBtn"
+                        title="Previous day" aria-label="Previous day">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <section class="days-columns-container" id="daysContainer" aria-label="Daily schedules">
+                        <!-- Monday through Sunday rendered via JavaScript -->
+                    </section>
+                    <button type="button" class="days-slider-nav-btn next-day-btn no-print" id="sliderNextDayBtn"
+                        title="Next day" aria-label="Next day">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Bottom 4 Functional Cards -->
+                <section class="bottom-modules-grid" aria-label="Habits, priorities, notes and upcoming tasks">
+
+                    <!-- Card 1: Daily Habits -->
+                    <article class="module-card card-habits" id="habitsModule">
+                        <header class="module-header bg-sage">
+                            <h3 class="module-title">Daily Habits</h3>
+                            <div class="habits-header-days" aria-hidden="true">
+                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                            </div>
+                        </header>
+                        <div class="module-content habits-content" id="habitsList">
+                            <!-- Habit items rendered dynamically -->
+                        </div>
+                        <div class="module-footer no-print">
+                            <button class="btn-add-item" id="addHabitBtn">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.6">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Add Habit</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 2: Priorities -->
+                    <article class="module-card card-priorities" id="prioritiesModule">
+                        <header class="module-header bg-coral">
+                            <h3 class="module-title">Priorities</h3>
+                            <span class="module-badge" id="prioritiesBadge">0/0</span>
+                        </header>
+                        <div class="module-content lined-content" id="prioritiesList">
+                            <!-- Priorities rendered dynamically -->
+                        </div>
+                        <div class="module-footer no-print">
+                            <button class="btn-add-item" id="addPriorityBtn">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.6">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Add Priority</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 3: Notes -->
+                    <article class="module-card card-notes" id="notesModule">
+                        <header class="module-header bg-cream">
+                            <h3 class="module-title">Notes</h3>
+                        </header>
+                        <div class="module-content notes-content" id="notesList">
+                            <!-- Notes lines rendered dynamically -->
+                        </div>
+                        <div class="module-footer no-print">
+                            <button class="btn-add-item" id="addNoteBtn">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.6">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Add Note Line</span>
+                            </button>
+                        </div>
+                    </article>
+
+                </section>
+            </div>
+        </main>
+
+        <!-- View Section: 0. Dashboard -->
+        <section class="planner-view-section" id="viewDashboard" data-view="dashboard">
+            <div class="saas-dashboard">
+                <!-- Top Header Navigation -->
+                <header class="dash-top-nav">
+                    <div class="dash-nav-left">
+                        <nav class="dash-nav-tabs" role="tablist">
+                            <button type="button" class="dash-tab active" data-tab="dashboard">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                                    <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                                    <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                                    <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                                    <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                                </svg>
+                                <span>Dashboard</span>
+                            </button>
+                            <button type="button" class="dash-tab" data-tab="workflows">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                                    </path>
+                                </svg>
+                                <span>Workflows</span>
+                            </button>
+                            <button type="button" class="dash-tab" data-tab="integrations">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 19 22 19"></polygon>
+                                </svg>
+                                <span>Integrations</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div class="dash-nav-center">
+                        <div class="dash-search-box">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" placeholder="Search or type command" class="dash-search-input"
+                                aria-label="Search">
+                        </div>
+                    </div>
+
+                    <div class="dash-nav-right">
+                        <div class="dash-theme-switch" role="group" aria-label="Theme Toggle">
+                            <button type="button" class="dash-theme-btn active" title="Light theme">
+                                <span class="theme-dot"></span> Light
+                            </button>
+                            <button type="button" class="dash-theme-btn" title="Dark theme">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg> Dark
+                            </button>
+                        </div>
+
+                        <button type="button" class="dash-icon-btn" aria-label="Notifications" title="Notifications">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                        </button>
+
+                        <button type="button" class="dash-icon-btn" aria-label="Settings" title="Settings">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <button type="button" class="dash-pill-btn dash-export-btn" title="Export data (Command+E)">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>Export data</span>
+                            <span class="dash-cmd-badge">⌘E</span>
+                        </button>
+
+                        <button type="button" class="dash-pill-btn dash-add-board-btn">
+                            <span>+ Add new board</span>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Hero Section -->
+                <section class="dash-hero-section">
+                    <div class="dash-hero-left">
+                        <div class="dash-hero-greeting">
+                            <span class="dash-greeting-text">Hi, James!</span>
+                            <span class="dash-greeting-wave">👋</span>
+                            <span class="dash-user-badge">
+                                <span class="dash-user-circle"></span>
+                            </span>
+                        </div>
+                        <h1 class="dash-hero-title">What are your planes for today?</h1>
+                        <p class="dash-hero-subtitle">This platform is designed to revolutionize the way you organize
+                            and access your notes</p>
+                    </div>
+
+                    <div class="dash-hero-right">
+                        <!-- 4 Quick Action Cards -->
+                        <div class="dash-action-card dash-action-add" title="Add new quick item">
+                            <div class="dash-action-plus-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.8" stroke-linecap="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="dash-action-card">
+                            <div class="dash-action-icon-wrap">
+                                <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                                    <rect x="8" y="10" width="32" height="34" rx="4" fill="#ffffff" stroke="#1e2038"
+                                        stroke-width="2.2" />
+                                    <path d="M14 6v8M34 6v8" stroke="#1e2038" stroke-width="2.5"
+                                        stroke-linecap="round" />
+                                    <rect x="12" y="18" width="10" height="10" rx="2" fill="#5051f9" />
+                                    <line x1="26" y1="21" x2="36" y2="21" stroke="#8c90a9" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <line x1="26" y1="26" x2="34" y2="26" stroke="#8c90a9" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <path d="M26 34h10M14 34h6" stroke="#c0c4dc" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <h4 class="dash-action-title">Stay organized</h4>
+                            <p class="dash-action-desc">A clear structure for your notes</p>
+                        </div>
+
+                        <div class="dash-action-card">
+                            <div class="dash-action-icon-wrap">
+                                <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                                    <path d="M4 14C16 12 32 12 44 14" stroke="#1e2038" stroke-width="2"
+                                        stroke-dasharray="3 3" />
+                                    <rect x="8" y="15" width="10" height="14" rx="1.5" transform="rotate(-6 8 15)"
+                                        fill="#ffffff" stroke="#1e2038" stroke-width="2" />
+                                    <rect x="20" y="15" width="10" height="14" rx="1.5" fill="#5051f9"
+                                        fill-opacity="0.15" stroke="#5051f9" stroke-width="2" />
+                                    <rect x="31" y="16" width="10" height="14" rx="1.5" transform="rotate(7 31 16)"
+                                        fill="#ffffff" stroke="#1e2038" stroke-width="2" />
+                                    <circle cx="13" cy="13" r="1.5" fill="#1e2038" />
+                                    <circle cx="25" cy="13" r="1.5" fill="#1e2038" />
+                                    <circle cx="36" cy="13" r="1.5" fill="#1e2038" />
+                                </svg>
+                            </div>
+                            <h4 class="dash-action-title">Sync your notes</h4>
+                            <p class="dash-action-desc">Ensure that notes are synced</p>
+                        </div>
+
+                        <div class="dash-action-card">
+                            <div class="dash-action-icon-wrap">
+                                <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                                    <rect x="8" y="14" width="32" height="26" rx="4" fill="#ffffff" stroke="#1e2038"
+                                        stroke-width="2.2" />
+                                    <path d="M14 14v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4" stroke="#1e2038"
+                                        stroke-width="2.2" />
+                                    <rect x="14" y="22" width="20" height="4" rx="2" fill="#5051f9" />
+                                    <text x="35" y="13" font-size="8" font-family="sans-serif" font-weight="bold"
+                                        fill="#8c90a9">-0x</text>
+                                </svg>
+                            </div>
+                            <h4 class="dash-action-title">Collaborate and share</h4>
+                            <p class="dash-action-desc">Share notes with colleagues</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Middle 3-Column Grid -->
+                <div class="dash-mid-grid">
+                    <!-- Col 1: Notifications -->
+                    <div class="dash-card dash-notif-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title">Notifications</h3>
+                            <button type="button" class="dash-link-btn">Clear</button>
+                        </div>
+
+                        <div class="dash-notif-stack">
+                            <!-- Elevated Item 1 -->
+                            <div class="dash-notif-item dash-notif-elevated">
+                                <div class="dash-notif-top">
+                                    <span class="dash-notif-label">Upcoming event <span
+                                            class="dash-dot-purple">●</span></span>
+                                    <div class="dash-notif-actions">
+                                        <button type="button" class="dash-mini-action" title="More options">•••</button>
+                                        <button type="button" class="dash-mini-action" title="Delete">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                <path
+                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button type="button" class="dash-mini-action" title="Edit">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 20h9"></path>
+                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="dash-notif-event-title">Landing design meeting <span
+                                        class="dash-pipe">|</span> <span class="dash-muted">Time: 120 min</span></div>
+                                <div class="dash-notif-meta">
+                                    <span class="dash-meta-badge">📅 Sat, 10 May</span>
+                                    <span class="dash-meta-badge">⏰ 11 AM - 11:45 AM</span>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="dash-notif-item dash-notif-msg">
+                                <div class="dash-notif-top">
+                                    <span class="dash-notif-label">Message <span class="dash-pipe">|</span> Product
+                                        design</span>
+                                    <button type="button" class="dash-mini-action">•••</button>
+                                </div>
+                                <div class="dash-notif-sender">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    <span>Message from Ken Smith</span>
+                                </div>
+                                <div class="dash-msg-bubble">
+                                    Hey team, just wanted to check in and see how...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Assignments -->
+                    <div class="dash-card dash-assign-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title">Assignments</h3>
+                            <button type="button" class="dash-link-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 20h9"></path>
+                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                        </div>
+
+                        <div class="dash-assign-tags-row">
+                            <div class="dash-tag-group">
+                                <span class="dash-pill-tag tag-blue">Motion design</span>
+                                <span class="dash-pill-tag tag-gray">Logo</span>
+                            </div>
+                            <button type="button" class="dash-mini-action">•••</button>
+                        </div>
+
+                        <h4 class="dash-assign-heading">Design a packaging concept for a new product</h4>
+
+                        <div class="dash-priority-wrap">
+                            <span class="dash-priority-badge priority-high">High</span>
+                        </div>
+
+                        <div class="dash-assign-footer-row">
+                            <span class="dash-category-badge">Package design</span>
+                            <div class="dash-assignee">
+                                <div class="dash-avatar-sm">RL</div>
+                                <span class="dash-assignee-name">Rachel Lee</span>
+                            </div>
+                        </div>
+
+                        <button type="button" class="dash-add-assign-btn">
+                            <span class="dash-btn-plus-icon">+</span>
+                            <span>Add new assignment</span>
+                        </button>
+                    </div>
+
+                    <!-- Col 3: May 2021 Schedule -->
+                    <div class="dash-card dash-schedule-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title">May 2021</h3>
+                            <div class="dash-nav-arrows">
+                                <button type="button" class="dash-arrow-btn" aria-label="Previous week">‹</button>
+                                <button type="button" class="dash-arrow-btn" aria-label="Next week">›</button>
+                            </div>
+                        </div>
+
+                        <div class="dash-week-strip">
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Mon</span>
+                                <span class="dash-day-num">14</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Tue</span>
+                                <span class="dash-day-num">15</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Wed</span>
+                                <span class="dash-day-num">16</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Thr</span>
+                                <span class="dash-day-num">17</span>
+                            </div>
+                            <div class="dash-day-col active">
+                                <span class="dash-day-name">Fr</span>
+                                <span class="dash-day-num">18</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Sat</span>
+                                <span class="dash-day-num">19</span>
+                            </div>
+                            <div class="dash-day-col">
+                                <span class="dash-day-name">Sun</span>
+                                <span class="dash-day-num">20</span>
+                            </div>
+                        </div>
+
+                        <div class="dash-timeline-list">
+                            <!-- Timeline Event 1 -->
+                            <div class="dash-timeline-divider">
+                                <span class="dash-time-label">04:30-05:00 PM</span>
+                                <span class="dash-time-line"></span>
+                            </div>
+                            <div class="dash-sched-item">
+                                <div class="dash-sched-icon icon-hexagon">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <path
+                                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="dash-sched-info">
+                                    <div class="dash-sched-title">Team meeting</div>
+                                    <div class="dash-sched-sub">12:00 - 12:30 • UX/UI design</div>
+                                </div>
+                                <button type="button" class="dash-mini-action">⋮</button>
+                            </div>
+
+                            <!-- Timeline Event 2 -->
+                            <div class="dash-timeline-divider">
+                                <span class="dash-time-label">11:30-12:30 PM</span>
+                                <span class="dash-time-line"></span>
+                            </div>
+                            <div class="dash-sched-item">
+                                <div class="dash-sched-icon icon-briefcase">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                </div>
+                                <div class="dash-sched-info">
+                                    <div class="dash-sched-title">Meeting with new client</div>
+                                    <div class="dash-sched-sub">12:30 - 01:30 PM • Job interview</div>
+                                </div>
+                                <button type="button" class="dash-mini-action">⋮</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom 3-Column Grid -->
+                <div class="dash-bottom-grid">
+                    <!-- Col 1: Today tasks (Wide) -->
+                    <div class="dash-card dash-tasks-card">
+                        <div class="dash-card-header">
+                            <div class="dash-tasks-header-left">
+                                <h3 class="dash-card-title">Today tasks</h3>
+                                <div class="dash-avatar-stack">
+                                    <span class="dash-stack-avatar dash-avatar-indigo">JD</span>
+                                    <span class="dash-stack-avatar dash-avatar-cyan">MK</span>
+                                    <span class="dash-stack-avatar dash-avatar-amber">AL</span>
+                                    <span class="dash-stack-avatar dash-stack-plus">+</span>
+                                </div>
+                            </div>
+
+                            <div class="dash-tasks-header-right">
+                                <button type="button" class="dash-view-btn active" title="List view">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2">
+                                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                    </svg>
+                                </button>
+                                <button type="button" class="dash-view-btn" title="Kanban view">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2">
+                                        <rect x="3" y="3" width="7" height="18" rx="1"></rect>
+                                        <rect x="14" y="3" width="7" height="18" rx="1"></rect>
+                                    </svg>
+                                </button>
+                                <button type="button" class="dash-link-btn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 20h9"></path>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                    <span>Edit</span>
+                                </button>
+                                <button type="button" class="dash-link-btn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
+                                    <span>Share</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="dash-tasks-table">
+                            <!-- Task 1 -->
+                            <div class="dash-task-row">
+                                <div class="dash-task-main">
+                                    <div class="dash-task-title">Conduct research</div>
+                                    <div class="dash-task-time">4 May, 09:20 AM</div>
+                                </div>
+                                <div class="dash-task-duration">
+                                    <span class="dash-duration-pill">Duration 02 h 45 m</span>
+                                </div>
+                                <div class="dash-task-progress-col">
+                                    <span class="dash-pct-label">90%</span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill dash-progress-w90"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-task-meta-col">
+                                    <div class="dash-avatar-tiny">4</div>
+                                    <span class="dash-date-badge">16</span>
+                                </div>
+                            </div>
+
+                            <!-- Task 2 -->
+                            <div class="dash-task-row">
+                                <div class="dash-task-main">
+                                    <div class="dash-task-title">Schedule a meeting</div>
+                                    <div class="dash-task-time">14 May, 12:45 AM</div>
+                                </div>
+                                <div class="dash-task-duration">
+                                    <span class="dash-duration-pill">Duration 06 h 55 m</span>
+                                </div>
+                                <div class="dash-task-progress-col">
+                                    <span class="dash-pct-label">50%</span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill dash-progress-w50"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-task-meta-col">
+                                    <div class="dash-avatar-tiny">4</div>
+                                    <span class="dash-date-badge">3 June</span>
+                                </div>
+                            </div>
+
+                            <!-- Task 3 -->
+                            <div class="dash-task-row">
+                                <div class="dash-task-main">
+                                    <div class="dash-task-title">Send out reminders</div>
+                                    <div class="dash-task-time">21 May, 10:30 AM</div>
+                                </div>
+                                <div class="dash-task-duration">
+                                    <span class="dash-duration-pill">Duration 01 h 30 m</span>
+                                </div>
+                                <div class="dash-task-progress-col">
+                                    <span class="dash-pct-label">10%</span>
+                                    <div class="dash-progress-track">
+                                        <div class="dash-progress-fill dash-progress-w10"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-task-meta-col">
+                                    <div class="dash-avatar-tiny">16</div>
+                                    <span class="dash-date-badge">3 June</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Go premium! (Gradient Promo Card) -->
+                    <div class="dash-card dash-premium-card">
+                        <div class="dash-premium-gift-wrap">
+                            <svg width="78" height="78" viewBox="0 0 84 84" fill="none">
+                                <ellipse cx="42" cy="74" rx="28" ry="6" fill="#1b1c38" fill-opacity="0.3" />
+                                <rect x="22" y="38" width="40" height="32" rx="4" fill="#ffffff" />
+                                <rect x="38" y="38" width="8" height="32" fill="#3e41d8" />
+                                <rect x="18" y="28" width="48" height="12" rx="3" transform="rotate(-6 18 28)"
+                                    fill="#ffffff" stroke="#e0e3fc" stroke-width="1.5" />
+                                <rect x="38" y="26" width="8" height="14" rx="1" transform="rotate(-6 38 26)"
+                                    fill="#3e41d8" />
+                                <path d="M36 22C32 14 24 16 28 22C32 26 38 26 38 26" stroke="#ffffff" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <path d="M46 22C50 14 58 16 54 22C50 26 44 26 44 26" stroke="#ffffff" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <path d="M14 18l3 3m-3 0l3-3M68 22l4 4m-4 0l4-4M58 8l2 2m-2 0l2-2" stroke="#ffffff"
+                                    stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="dash-premium-title">Go premium!</h3>
+                        <p class="dash-premium-desc">Gain access to a range of benefits designed to enhance your user
+                            experience</p>
+                        <button type="button" class="dash-premium-btn">Find out more</button>
+                    </div>
+
+                    <!-- Col 3: Mini Stats Donut Rings & Board Meeting -->
+                    <div class="dash-stats-col">
+                        <!-- Top: 2 Donut Rings -->
+                        <div class="dash-card dash-donuts-card">
+                            <div class="dash-donut-box">
+                                <div class="dash-donut-chart">
+                                    <svg width="58" height="58" viewBox="0 0 36 36">
+                                        <path class="donut-bg"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#e2e8f0" stroke-width="3.5" />
+                                        <path class="donut-fill green" stroke-dasharray="90, 100"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="dash-donut-val">90%</span>
+                                </div>
+                                <div class="dash-donut-content">
+                                    <div class="dash-donut-category cat-teal">DATA RESEARCH</div>
+                                    <div class="dash-donut-name">Marketing</div>
+                                    <div class="dash-donut-sub">You marked 5/5</div>
+                                    <div class="dash-donut-status green">All assignments are done!</div>
+                                </div>
+                            </div>
+
+                            <div class="dash-donut-box">
+                                <div class="dash-donut-chart">
+                                    <svg width="58" height="58" viewBox="0 0 36 36">
+                                        <path class="donut-bg"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#e2e8f0" stroke-width="3.5" />
+                                        <path class="donut-fill coral" stroke-dasharray="65, 100"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#f43f5e" stroke-width="3.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="dash-donut-val">65%</span>
+                                </div>
+                                <div class="dash-donut-content">
+                                    <div class="dash-donut-category cat-coral">UX/UI DESIGN</div>
+                                    <div class="dash-donut-name">Typography</div>
+                                    <div class="dash-donut-sub">You marked 3/5</div>
+                                    <div class="dash-donut-status coral">2 assignments left</div>
+                                    <button type="button" class="dash-btn-check">Check</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom: Board meeting -->
+                        <div class="dash-card dash-meeting-card">
+                            <div class="dash-card-header">
+                                <h3 class="dash-card-title">Board meeting</h3>
+                                <button type="button" class="dash-link-btn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 20h9"></path>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                    <span>Edit</span>
+                                </button>
+                            </div>
+
+                            <div class="dash-meeting-date">
+                                <span class="dash-dot-purple">●</span>
+                                <span>March 24 at 4:00 PM</span>
+                            </div>
+
+                            <p class="dash-meeting-desc">Meeting with John Smith, 4th floor, room 159</p>
+
+                            <div class="dash-meeting-actions">
+                                <button type="button" class="dash-btn-pill-gray">Reschedule</button>
+                                <button type="button" class="dash-btn-pill-purple">Accept invite</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden compatibility anchors for dynamic script hooks -->
+                <div class="is-hidden" aria-hidden="true">
+                    <span id="dashTasksStat">0/0</span>
+                    <span id="dashTaskPct">0% completed</span>
+                    <span id="dashHabitsStat">0 checkins</span>
+                    <span id="dashGymStat">0 exercises</span>
+                    <span id="dashMoneyStat">₹0.00</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- View Section: 2. Gym & Workout -->
+        <section class="planner-view-section" id="viewGym" data-view="gym">
+            <div class="planner-paper-sheet view-panel-sheet gym-view-sheet">
+
+                <!-- Main Gym Header -->
+                <div class="view-panel-header gym-top-header">
+                    <div class="view-panel-header-left">
+                        <div class="view-panel-icon gym-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 10v4M6 7v10M18 7v10M22 10v4M6 12h12" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="view-panel-title">Gym &amp; Workout</h2>
+                            <p class="view-panel-subtitle">Weekly workout schedule, exercise split and fitness tracking
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Workout Routine Section Bar -->
+                <div class="gym-routine-header-row">
+                    <div class="gym-routine-title-wrap">
+                        <h3 class="gym-routine-heading">Workout Routine</h3>
+                        <p class="gym-routine-desc">Customize workouts, GIF/video guides &amp; track daily progress</p>
+                    </div>
+                    <div class="gym-routine-actions">
+                        <button type="button" class="gym-btn-outline" id="gymClearAllBtn"
+                            title="Clear exercises for today">Clear</button>
+                        <button type="button" class="gym-btn-outline" id="gymResetAllBtn"
+                            title="Reset all workouts to empty">Reset All</button>
+                        <button type="button" class="gym-btn-outline" id="gymUncheckBtn"
+                            title="Uncheck all exercises for today">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                            </svg>
+                            <span>Uncheck</span>
+                        </button>
+                        <button type="button" class="gym-btn-solid" id="gymAddVideoBtn" title="Add Video / GIF Guides">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span>Add Videos</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout: Exercises on Left, 4 Visual Guides on Right -->
+                <div class="gym-main-layout">
+
+                    <!-- Left Column: Workout Routine & Exercises -->
+                    <div class="gym-left-col">
+                        <!-- Days of week navigation tabs (Mon - Sun) -->
+                        <div class="gym-day-nav" role="tablist" aria-label="Workout days">
+                            <button type="button" class="gym-day-tab active" data-gym-day="mon" role="tab"
+                                aria-selected="true">Mon</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="tue" role="tab"
+                                aria-selected="false">Tue</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="wed" role="tab"
+                                aria-selected="false">Wed</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="thu" role="tab"
+                                aria-selected="false">Thu</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="fri" role="tab"
+                                aria-selected="false">Fri</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="sat" role="tab"
+                                aria-selected="false">Sat</button>
+                            <button type="button" class="gym-day-tab" data-gym-day="sun" role="tab"
+                                aria-selected="false">Sun</button>
+                        </div>
+
+                        <!-- Split & Progress Card -->
+                        <div class="gym-split-banner">
+                            <div class="gym-split-name" id="gymSplitTitle">Mon &bull; Chest &amp; Triceps</div>
+                            <div class="gym-split-progress" id="gymProgressSummary">0 of 4 completed &bull; 0%</div>
+                        </div>
+
+                        <!-- Exercises List Header & Add Button -->
+                        <div class="gym-exercises-card">
+                            <div class="gym-exercises-card-header">
+                                <div class="gym-exercises-label-wrap">
+                                    <span class="gym-exercises-label">EXERCISES</span>
+                                    <span class="gym-items-count-badge" id="gymItemsCountBadge">4 items</span>
+                                </div>
+                                <button type="button" class="gym-btn-solid gym-btn-sm" id="gymAddExerciseBtn">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    <span>Add Exercise</span>
+                                </button>
+                            </div>
+
+                            <!-- Dynamic Exercises List Container -->
+                            <div class="gym-exercises-list" id="gymExercisesList">
+                                <!-- Rendered dynamically by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: 4 Visual Workout Demonstration Cards -->
+                    <div class="gym-right-col">
+                        <div class="gym-guides-grid" id="gymGuidesGrid">
+                            <!-- 1. Push-Up Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_pushup">
+                                v>
+                            </div>
+
+                            <!-- 2. Dumbbell Press Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_dumbbell">
+                                <div class="gym-guide-header-title">Doumbell Press</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_dumbbell">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:41</span>
+                                        <span></span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video2.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- 3. Tricep Dips Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_tricep">
+                                <div class="gym-guide-header-title">Tricep Dips</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_tricep">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:28</span>
+                                        <span></span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video3.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- 4. Incline Push-up Video -->
+                            <div class="gym-guide-item" data-guide-id="guide_incline">
+                                <div class="gym-guide-header-title">Incline Push-up</div>
+                                <div clas<div class="gym-guide-header-title">Push-Up</div>
+                                <div class="gym-guide-card" data-action="open-demo" data-guide-id="guide_pushup">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:24</span>
+                                        <span></span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    </dis="gym-guide-card" data-action="open-demo" data-guide-id="guide_incline">
+                                    <div class="gym-guide-top-bar">
+                                        <span class="gym-guide-timer-badge">0:32</span>
+                                        <span class="gym-guide-check-badge">&#10003;</span>
+                                    </div>
+                                    <video class="gym-guide-img gym-guide-video" autoplay loop muted playsinline
+                                        preload="metadata">
+                                        <source src="video4.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- View Section: 3. Routine -->
+        <section class="planner-view-section" id="viewRoutine" data-view="routine">
+            <div class="planner-paper-sheet view-panel-sheet">
+                <div class="view-panel-header">
+                    <div class="view-panel-header-left">
+                        <div class="view-panel-icon routine-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 11 12 14 22 4"></polyline>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="view-panel-title">Routine & Priorities</h2>
+                            <p class="view-panel-subtitle">Master weekly routine and high-priority action items</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-open-daily" title="Go to Daily Planner">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
+                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Open Daily Planner</span>
+                    </button>
+                </div>
+                <div class="view-cards-grid">
+                    <div class="view-card-item">
+                        <h3 class="view-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg><span>Morning Routine</span></h3>
+                        <p class="view-card-desc">Wake-up, meditation, hydration, and goal setting to start strong.</p>
+                    </div>
+                    <div class="view-card-item">
+                        <h3 class="view-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg><span>Evening Wind-down</span></h3>
+                        <p class="view-card-desc">Screen-off time, reading, reflection, and prep for the next day.</p>
+                    </div>
+                    <div class="view-card-item">
+                        <h3 class="view-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                </polygon>
+                            </svg><span>Top 3 Priorities</span></h3>
+                        <p class="view-card-desc">Focus on the highest leverage outcomes for your week.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- View Section: 5. Good Habit -->
+        <section class="planner-view-section" id="viewHabits" data-view="good-habit">
+            <div class="planner-paper-sheet view-panel-sheet">
+                <div class="view-panel-header">
+                    <div class="view-panel-header-left">
+                        <div class="view-panel-icon habit-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="view-panel-title">Good Habits Tracker</h2>
+                            <p class="view-panel-subtitle">Build consistency with daily streaks and habit rituals</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-open-daily" title="Go to Daily Planner">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
+                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Open Daily Planner</span>
+                    </button>
+                </div>
+                <div class="view-cards-grid">
+                    <div class="view-card-item">
+                        <h3 class="view-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                            </svg><span>2.5L Water Intake</span></h3>
+                        <p class="view-card-desc">Daily hydration tracker to keep energy levels consistently high.</p>
+                    </div>
+                    <div class="view-card-item">
+                        <h3 class="view-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg><span>20 Mins Reading</span></h3>
+                        <p class="view-card-desc">Daily learning habit across books, articles or technical guides.</p>
+                    </div>
+                    <div class="view-card-item">
+                        <h3 class="view-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg><span>8,000 Daily Steps</span></h3>
+                        <p class="view-card-desc">Daily movement and walking target for physical wellbeing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Dialog / Modal for adding or editing items -->
+        <!-- Dialog / Modal for adding or editing items -->
+        <dialog id="editModal" class="planner-dialog">
+            <form id="editForm" method="dialog">
+                <!-- Header with Title on Left and Pill on Right matching mockup -->
+                <div class="dialog-header-row">
+                    <h4 id="modalHeading">Edit Task</h4>
+                    <div class="time-preview-badge" id="timePreviewBadge" title="Selected Time">
+                        <span id="timeDisplayVal">09:00 AM</span>
+                    </div>
+                </div>
+
+                <!-- Description Field -->
+                <div class="dialog-field">
+                    <label for="itemInputText">Description</label>
+                    <input type="text" id="itemInputText" required autocomplete="off"
+                        placeholder="Enter task or item...">
+                </div>
+
+                <!-- Scheduled Time Field (Side-by-side Layout matching mockup) -->
+                <div class="dialog-field time-field-row" id="modalTimeFieldWrap">
+                    <label class="time-row-label" for="itemInputTime">Scheduled Time</label>
+
+                    <div class="time-picker-outer">
+                        <!-- Hidden input to maintain seamless form and data compatibility -->
+                        <input type="hidden" id="itemInputTime" name="itemInputTime" value="09:00 AM">
+
+                        <!-- Time Picker Card -->
+                        <div class="time-picker-card" id="timePickerContainer" role="region"
+                            aria-label="Interactive Time Picker">
+                            <!-- Hour Column -->
+                            <div class="time-col-block">
+                                <span class="time-col-header">HH</span>
+                                <button type="button" class="time-step-chevron" id="hourUpBtn"
+                                    aria-label="Previous Hour" title="Scroll Up">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="time-wheel-viewport" id="hourWheelViewport" tabindex="0" role="listbox"
+                                    aria-label="Select Hour">
+                                    <div class="time-wheel-highlight-lens"></div>
+                                    <div class="time-wheel-list" id="hourWheelList"></div>
+                                </div>
+                                <button type="button" class="time-step-chevron" id="hourDownBtn" aria-label="Next Hour"
+                                    title="Scroll Down">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Colon Separator -->
+                            <div class="time-colon-separator" aria-hidden="true">:</div>
+
+                            <!-- Minute Column -->
+                            <div class="time-col-block">
+                                <span class="time-col-header">MM</span>
+                                <button type="button" class="time-step-chevron" id="minuteUpBtn"
+                                    aria-label="Previous Minute" title="Scroll Up">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="time-wheel-viewport" id="minuteWheelViewport" tabindex="0" role="listbox"
+                                    aria-label="Select Minute">
+                                    <div class="time-wheel-highlight-lens"></div>
+                                    <div class="time-wheel-list" id="minuteWheelList"></div>
+                                </div>
+                                <button type="button" class="time-step-chevron" id="minuteDownBtn"
+                                    aria-label="Next Minute" title="Scroll Down">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Vertical Divider -->
+                            <div class="time-vertical-divider" aria-hidden="true"></div>
+
+                            <!-- AM / PM Switch Buttons -->
+                            <div class="time-ampm-block">
+                                <div class="time-ampm-switch" role="group" aria-label="AM or PM">
+                                    <button type="button" class="ampm-btn active" id="ampmBtnAM"
+                                        data-period="AM">AM</button>
+                                    <button type="button" class="ampm-btn" id="ampmBtnPM" data-period="PM">PM</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Helper Tip Text below card -->
+                        <p class="time-picker-tip">Tip: Mouse wheel, touch drag, ya &#9650;/&#9660; arrows se scroll
+                            karein.</p>
+                    </div>
+                </div>
+
+                <!-- Dialog Actions (Cancel & Save) -->
+                <div class="dialog-button-group">
+                    <button type="button" class="btn-dialog-cancel" id="modalCancelBtn">Cancel</button>
+                    <button type="submit" class="btn-dialog-submit" id="modalSubmitBtn">Save</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Note Dialog / Modal (Exact match to reference mockup) -->
+        <dialog id="noteModal" class="planner-dialog note-modal-dialog" aria-labelledby="noteModalTitle">
+            <form id="noteForm" method="dialog" class="note-modal-form">
+                <h2 id="noteModalTitle" class="note-modal-heading">Notes</h2>
+
+                <!-- Field 1: Title Outlined Box with Notch Legend -->
+                <fieldset class="note-modal-fieldset">
+                    <legend class="note-modal-legend">Title</legend>
+                    <input type="text" id="noteInputTitle" class="note-modal-input-title"
+                        placeholder="Exercise at least 30" autocomplete="off" required>
+                </fieldset>
+
+                <!-- Field 2: Date Outlined Box with Notch Legend (Automatic or Custom Date) -->
+                <fieldset class="note-modal-fieldset date-fieldset">
+                    <legend class="note-modal-legend">Date: --</legend>
+                    <div class="note-modal-date-picker-row">
+                        <input type="date" id="noteInputDate" class="note-modal-input-date" required>
+                        <span class="note-modal-date-tag" id="noteModalDateBadge">Oct. 26</span>
+                    </div>
+                </fieldset>
+
+                <!-- Field 3: Descriptions Outlined Box with Notch Legend -->
+                <fieldset class="note-modal-fieldset desc-fieldset">
+                    <legend class="note-modal-legend">Descriptions: --</legend>
+                    <textarea id="noteInputDesc" class="note-modal-textarea-desc" rows="5"
+                        placeholder="Write description here..."></textarea>
+                </fieldset>
+
+                <!-- Bottom Action Buttons: Cancel and Save -->
+                <div class="note-modal-actions">
+                    <button type="button" class="btn-note-cancel" id="noteModalCancelBtn">Cancel</button>
+                    <button type="submit" class="btn-note-save" id="noteModalSaveBtn">Save</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Google Drive Backup & Sync Modal -->
+        <dialog id="gdriveModal" class="planner-dialog gdrive-dialog">
+            <div class="gdrive-modal-wrapper">
+                <header class="gdrive-modal-header">
+                    <div class="gdrive-header-title-wrap">
+                        <div class="gdrive-logo-badge">
+                            <svg width="24" height="24" viewBox="0 0 87.3 78">
+                                <path
+                                    d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.45z"
+                                    fill="#0066da" />
+                                <path
+                                    d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44.05c-.8 1.35-1.2 2.9-1.2 4.45h27.5z"
+                                    fill="#00ac47" />
+                                <path
+                                    d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.35 1.2-2.9 1.2-4.45h-27.5l5.85 10.15z"
+                                    fill="#ea4335" />
+                                <path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.45-1.2h-18.5c-1.55 0-3.1.4-4.45 1.2z"
+                                    fill="#00832d" />
+                                <path
+                                    d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.45 1.2h50.8c1.55 0 3.1-.4 4.45-1.2z"
+                                    fill="#2684fc" />
+                                <path
+                                    d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.45z"
+                                    fill="#ffba00" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Backup &amp; Export Center</h4>
+                            <p class="gdrive-subtitle">Auto-save active locally. Export to Excel, download backup, or
+                                sync with cloud</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-dialog-close" id="gdriveModalCloseBtn" aria-label="Close dialog">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </header>
+
+                <!-- Protocol Warning (if running directly from file://) -->
+                <div id="gdriveProtocolNotice" class="gdrive-notice-box hidden">
+                    <div class="notice-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg></div>
+                    <div class="notice-body">
+                        <strong>Running via file:// protocol</strong>
+                        <p>Google OAuth requires an HTTP server (e.g. VS Code Live Server on
+                            <code>http://127.0.0.1:5500</code>). You can still download your backup file directly and
+                            upload it to Google Drive manually!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Account Status Card -->
+                <div class="gdrive-account-card">
+                    <div class="account-profile-wrap">
+                        <div id="gdriveAvatar" class="account-avatar">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="account-meta">
+                            <div class="account-name" id="gdriveUserName">Google Drive Not Connected</div>
+                            <div class="account-email" id="gdriveUserEmail">Connect your Google account to enable cloud
+                                sync</div>
+                        </div>
+                    </div>
+                    <div class="account-action">
+                        <button type="button" id="gdriveAuthBtn" class="btn-gdrive-primary">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                <polyline points="10 17 15 12 10 7"></polyline>
+                                <line x1="15" y1="12" x2="3" y2="12"></line>
+                            </svg>
+                            <span id="gdriveAuthBtnText">Connect</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Actions (Backup & Restore) -->
+                <div class="gdrive-actions-grid">
+                    <!-- Backup Card -->
+                    <div class="action-card backup-card">
+                        <div class="action-card-header">
+                            <div class="card-icon-bubble bubble-blue">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Backup to Drive</h5>
+                                <p>Save current planner to Google Drive</p>
+                            </div>
+                        </div>
+                        <button type="button" id="gdriveBackupNowBtn" class="btn-action-cta backup">
+                            <span class="btn-text">Backup to Google Drive</span>
+                            <span class="btn-spinner hidden" id="gdriveBackupSpinner"></span>
+                        </button>
+                        <div class="backup-meta-info">
+                            <span>Last: <strong id="gdriveLastBackupText">Never</strong></span>
+                            <a id="gdriveViewFileLink" href="#" target="_blank" rel="noopener noreferrer"
+                                class="view-file-link hidden">Open Drive ↗</a>
+                        </div>
+                    </div>
+
+                    <!-- Restore Card -->
+                    <div class="action-card restore-card">
+                        <div class="action-card-header">
+                            <div class="card-icon-bubble bubble-green">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <h5>Restore from Drive</h5>
+                                <p>Load your saved planner from cloud</p>
+                            </div>
+                        </div>
+                        <button type="button" id="gdriveRestoreNowBtn" class="btn-action-cta restore">
+                            <span class="btn-text">Restore from Google Drive</span>
+                            <span class="btn-spinner hidden" id="gdriveRestoreSpinner"></span>
+                        </button>
+                        <div class="backup-meta-info">
+                            <span>Cloud file: <strong id="gdriveFileStatusText">Not checked</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto-Sync Setting Row -->
+                <div class="gdrive-setting-row">
+                    <div class="setting-info">
+                        <span class="setting-title">Auto-Backup on Changes</span>
+                        <span class="setting-desc">Automatically upload backup to Google Drive as you make edits</span>
+                    </div>
+                    <label class="toggle-switch" title="Toggle automatic backup to Google Drive">
+                        <input type="checkbox" id="gdriveAutoSyncToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Quick Manual Options -->
+                <div class="gdrive-manual-strip">
+                    <span class="manual-label">Quick Links:</span>
+                    <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="chip-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        Open drive.google.com
+                    </a>
+                    <button type="button" id="gdriveDownloadExcelBtn" class="chip-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="8" y1="13" x2="16" y2="13"></line>
+                            <line x1="8" y1="17" x2="16" y2="17"></line>
+                        </svg>
+                        Export to Excel (.xls)
+                    </button>
+                    <button type="button" id="gdriveDownloadCsvBtn" class="chip-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Export to CSV (.csv)
+                    </button>
+                    <button type="button" id="gdriveDownloadJsonBtn" class="chip-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Local JSON
+                    </button>
+                    <button type="button" id="saveOfflineNowBtn" class="chip-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Save Offline (Local)
+                    </button>
+                </div>
+
+                <!-- Collapsible Settings: Google Client ID -->
+                <details class="gdrive-config-details" id="gdriveConfigDetails">
+                    <summary class="config-summary">
+                        <span class="inline-flex-center"><svg width="15" height="15"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                class="icon-mr-6">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                </path>
+                            </svg>Google Cloud API Configuration</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="chevron-icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </summary>
+                    <div class="config-body">
+                        <div class="dialog-field">
+                            <label for="gdriveClientIdInput">Google OAuth 2.0 Client ID</label>
+                            <div class="input-with-btn">
+                                <input type="text" id="gdriveClientIdInput"
+                                    placeholder="e.g. 123456789-xxxx.apps.googleusercontent.com" autocomplete="off">
+                                <button type="button" id="gdriveSaveClientIdBtn" class="btn-save-config">Save
+                                    ID</button>
+                            </div>
+                        </div>
+                        <div class="config-help-box">
+                            <strong>Setup Guide (takes 1–2 minutes):</strong>
+                            <ol>
+                                <li>Open <a href="https://console.cloud.google.com/apis/credentials" target="_blank"
+                                        rel="noopener noreferrer">Google Cloud Console &rarr; Credentials</a>.</li>
+                                <li>Enable <strong>Google Drive API</strong> in <em>APIs &amp; Services &gt;
+                                        Library</em>.</li>
+                                <li>Create <strong>OAuth 2.0 Client ID</strong> (Web application).</li>
+                                <li>In <em>Authorized JavaScript origins</em>, add your URL (e.g.
+                                    <code>http://localhost:5500</code> or <code>http://127.0.0.1:5500</code>).
+                                </li>
+                                <li>Paste your Client ID above and click <strong>Save ID</strong>!</li>
+                            </ol>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </dialog>
+
+        <!-- Gym Modal: Add / Edit Exercise -->
+        <dialog id="gymExerciseModal" class="planner-dialog gym-dialog">
+            <form id="gymExerciseForm" method="dialog" class="gym-modal-form">
+                <div class="dialog-header-row">
+                    <h4 id="gymModalHeading">Add Exercise</h4>
+                    <span class="gym-dialog-badge" id="gymModalDayBadge">Mon &bull; Chest &amp; Triceps</span>
+                </div>
+                <div class="gym-modal-fields">
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Exercise Name</span>
+                        <input type="text" id="gymExNameInput" class="gym-text-input"
+                            placeholder="e.g. Incline Bench Press" required>
+                    </label>
+                    <div class="gym-input-row-2">
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Sets</span>
+                            <input type="text" id="gymExSetsInput" class="gym-text-input" placeholder="e.g. 3 sets"
+                                required>
+                        </label>
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Reps / Duration</span>
+                            <input type="text" id="gymExRepsInput" class="gym-text-input" placeholder="e.g. 12 reps"
+                                required>
+                        </label>
+                    </div>
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Day</span>
+                        <select id="gymExDaySelect" class="gym-select-input">
+                            <option value="mon">Monday (Chest &amp; Triceps)</option>
+                            <option value="tue">Tuesday (Back &amp; Biceps)</option>
+                            <option value="wed">Wednesday (Legs &amp; Calves)</option>
+                            <option value="thu">Thursday (Shoulders &amp; Traps)</option>
+                            <option value="fri">Friday (Full Body &amp; Core)</option>
+                            <option value="sat">Saturday (Cardio &amp; Abs)</option>
+                            <option value="sun">Sunday (Rest &amp; Mobility)</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="dialog-actions-row">
+                    <button type="button" class="btn-dialog-cancel" id="gymCancelExBtn">Cancel</button>
+                    <button type="submit" class="btn-dialog-save" id="gymSaveExBtn">Save Exercise</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Gym Modal: Add Video / Guide -->
+        <dialog id="gymVideoModal" class="planner-dialog gym-dialog">
+            <form id="gymVideoForm" method="dialog" class="gym-modal-form">
+                <div class="dialog-header-row">
+                    <h4>Add Video &amp; Guide</h4>
+                    <span class="gym-dialog-badge">Visual Cues</span>
+                </div>
+                <div class="gym-modal-fields">
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Guide Title</span>
+                        <input type="text" id="gymGuideTitleInput" class="gym-text-input"
+                            placeholder="e.g. Dumbbell Chest Fly" required>
+                    </label>
+                    <div class="gym-input-row-2">
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Target Muscle</span>
+                            <input type="text" id="gymGuideMuscleInput" class="gym-text-input"
+                                placeholder="e.g. Pectorals" required>
+                        </label>
+                        <label class="gym-input-group">
+                            <span class="gym-input-label">Timer / Duration</span>
+                            <input type="text" id="gymGuideDurationInput" class="gym-text-input"
+                                placeholder="e.g. 0:30">
+                        </label>
+                    </div>
+                    <label class="gym-input-group">
+                        <span class="gym-input-label">Video / Demo URL or GIF (Optional)</span>
+                        <input type="url" id="gymGuideUrlInput" class="gym-text-input"
+                            placeholder="https://... (or leave empty for visual guide)">
+                    </label>
+                </div>
+                <div class="dialog-actions-row">
+                    <button type="button" class="btn-dialog-cancel" id="gymCancelVideoBtn">Cancel</button>
+                    <button type="submit" class="btn-dialog-save" id="gymSaveVideoBtn">Add Guide</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Gym Modal: Interactive Demo Player -->
+        <dialog id="gymDemoModal" class="planner-dialog gym-demo-dialog">
+            <div class="gym-demo-player-wrap">
+                <div class="gym-demo-player-header">
+                    <div>
+                        <h3 id="gymDemoTitle" class="gym-demo-heading">Push-Up Demo</h3>
+                        <p id="gymDemoMuscle" class="gym-demo-subheading">Target: Chest &amp; Triceps</p>
+                    </div>
+                    <button type="button" class="btn-close-demo" id="gymCloseDemoBtn" title="Close Video"
+                        aria-label="Close Video">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="gym-demo-canvas-wrap" id="gymDemoCanvas">
+                    <!-- Interactive graphic / video loaded here -->
+                </div>
+                <div class="gym-demo-timer-bar">
+                    <div class="demo-timer-count" id="gymDemoTimer">00:24</div>
+                    <div class="demo-timer-controls">
+                        <button type="button" class="demo-timer-btn" id="gymDemoPlayPauseBtn">Pause</button>
+                        <button type="button" class="demo-timer-btn outline" id="gymDemoResetTimerBtn">Reset</button>
+                        <button type="button" class="demo-timer-btn close-btn" id="gymDemoBottomCloseBtn"
+                            title="Close Video Popup">Close</button>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="appToast" class="app-toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
