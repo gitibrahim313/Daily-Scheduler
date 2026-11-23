@@ -9,15 +9,9 @@
 
   const DEFAULT_MONEY_DATA = {
     currency: '₹',
-    budgetLimit: 25000,
-    savingsTarget: 10000,
-    transactions: [
-      { id: 'tx_1', type: 'income', title: 'Monthly Salary', category: 'Salary', amount: 50000, date: '2026-11-02' },
-      { id: 'tx_2', type: 'expense', title: 'Grocery Shopping', category: 'Groceries', amount: 3500, date: '2026-11-03' },
-      { id: 'tx_3', type: 'expense', title: 'Internet & Mobile Bill', category: 'Utilities', amount: 1200, date: '2026-11-04' },
-      { id: 'tx_4', type: 'expense', title: 'Gym Membership', category: 'Fitness', amount: 1500, date: '2026-11-05' },
-      { id: 'tx_5', type: 'expense', title: 'Dining Out', category: 'Food & Dining', amount: 1800, date: '2026-11-06' }
-    ]
+    budgetLimit: 0,
+    savingsTarget: 0,
+    transactions: []
   };
 
   let moneyData = null;
@@ -54,6 +48,31 @@
     }
     if (!moneyData || !Array.isArray(moneyData.transactions)) {
       moneyData = JSON.parse(JSON.stringify(DEFAULT_MONEY_DATA));
+    }
+    // Remove legacy mock/sample transactions if present
+    const mockTitles = new Set([
+      'Weekly Salary',
+      'Monthly Salary',
+      'Grocery Shopping',
+      'Internet & Mobile Bill',
+      'Gym Membership',
+      'Dining Out'
+    ]);
+    if (Array.isArray(moneyData.transactions)) {
+      const hadMockData = moneyData.transactions.some(t => mockTitles.has(t.title) || /^tx_[1-5]$/.test(t.id));
+      if (hadMockData) {
+        moneyData.transactions = moneyData.transactions.filter(t => !mockTitles.has(t.title) && !/^tx_[1-5]$/.test(t.id));
+        persistMoneyData();
+      }
+    }
+    // Clean mock default budget/savings limits if no user transactions exist
+    if ((moneyData.budgetLimit === 25000 || moneyData.budgetLimit === 2500) && (!moneyData.transactions || moneyData.transactions.length === 0)) {
+      moneyData.budgetLimit = 0;
+      persistMoneyData();
+    }
+    if ((moneyData.savingsTarget === 10000 || moneyData.savingsTarget === 1000) && (!moneyData.transactions || moneyData.transactions.length === 0)) {
+      moneyData.savingsTarget = 0;
+      persistMoneyData();
     }
     // Auto-migrate legacy dollar currency to INR (₹)
     if (moneyData.currency === '$' || !moneyData.currency) {
@@ -107,10 +126,14 @@
     if (netSavingsEl) netSavingsEl.textContent = `${sym}${Math.max(0, netSavings).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
 
     if (budgetBarEl) budgetBarEl.style.width = `${budgetPct}%`;
-    if (budgetRatioEl) budgetRatioEl.textContent = `${sym}${totalExpense.toLocaleString('en-IN', { maximumFractionDigits: 0 })} / ${sym}${Number(moneyData.budgetLimit).toLocaleString('en-IN')} (${budgetPct}%)`;
+    if (budgetRatioEl) {
+      budgetRatioEl.textContent = `${sym}${totalExpense.toLocaleString('en-IN', { maximumFractionDigits: 0 })} / ${sym}${Number(moneyData.budgetLimit || 0).toLocaleString('en-IN')} (${budgetPct}%)`;
+    }
 
     if (savingsBarEl) savingsBarEl.style.width = `${savingsPct}%`;
-    if (savingsRatioEl) savingsRatioEl.textContent = `${sym}${Math.max(0, netSavings).toLocaleString('en-IN', { maximumFractionDigits: 0 })} / ${sym}${Number(moneyData.savingsTarget).toLocaleString('en-IN')} (${savingsPct}%)`;
+    if (savingsRatioEl) {
+      savingsRatioEl.textContent = `${sym}${Math.max(0, netSavings).toLocaleString('en-IN', { maximumFractionDigits: 0 })} / ${sym}${Number(moneyData.savingsTarget || 0).toLocaleString('en-IN')} (${savingsPct}%)`;
+    }
 
     // Render Transaction List
     const tableBody = document.getElementById('moneyTxTableBody');
@@ -212,12 +235,38 @@
       }
     });
 
+    // Set Budget Limit on click
+    document.getElementById('moneyBudgetRatio')?.parentElement?.addEventListener('click', () => {
+      const current = moneyData.budgetLimit || 0;
+      const input = prompt('Enter monthly budget spend limit (₹):', current ? String(current) : '');
+      if (input !== null) {
+        const val = parseFloat(input);
+        moneyData.budgetLimit = isNaN(val) || val < 0 ? 0 : val;
+        persistMoneyData();
+        renderMoney();
+        showToast('Monthly budget updated');
+      }
+    });
+
+    // Set Savings Target on click
+    document.getElementById('moneySavingsRatio')?.parentElement?.addEventListener('click', () => {
+      const current = moneyData.savingsTarget || 0;
+      const input = prompt('Enter monthly savings target (₹):', current ? String(current) : '');
+      if (input !== null) {
+        const val = parseFloat(input);
+        moneyData.savingsTarget = isNaN(val) || val < 0 ? 0 : val;
+        persistMoneyData();
+        renderMoney();
+        showToast('Savings target updated');
+      }
+    });
+
     // Reset All Transactions
     document.getElementById('moneyResetBtn')?.addEventListener('click', () => {
       moneyData = JSON.parse(JSON.stringify(DEFAULT_MONEY_DATA));
       persistMoneyData();
       renderMoney();
-      showToast('Money data reset to defaults');
+      showToast('Money data reset to clean defaults');
     });
 
     // Clear All Transactions

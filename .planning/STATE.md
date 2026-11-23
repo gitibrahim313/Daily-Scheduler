@@ -129,6 +129,7 @@ Work through these in order. Mark each as `ðŸ”„ In Progress` when you start, `âœ
 | 2026-11-21 | Antigravity | Removed all internal Money Control view code (`#viewMoney` section) from `index.html`; updated Money Flow side navigation button in `index.html` to an anchor linking directly to `money.html` (`<a href="money.html" class="rail-btn has-badge" ...>`); updated `app.js` navigation handler to allow standard link traversal. |
 | 2026-11-21 | Antigravity | Added full date format (`DD-MMM YYYY`, e.g. `21-Nov 2026`) on active day card: updated `renderDaysCardsOnly()` and `setActiveCard()` in `app.js` so that active day cards dynamically display full date with year while inactive cards display compact date (`Nov 21`); enhanced active date sub-label styling in `styles.css`. |
 | 2026-11-22 | Antigravity | Published codebase to GitHub: configured Git & GitHub CLI, created comprehensive `README.md` and `.gitignore`, created public repository `Daily-Scheduler`, and pushed `main` branch to `https://github.com/gitibrahim313/Daily-Scheduler` |
+| 2026-11-23 | Antigravity | Cleared all default/mock transactions from `money.html` and `money.js`; set default transactions to empty `[]`, budgetLimit to 0, savingsTarget to 0; added auto-cleaner in `loadMoneyData()` to purge legacy sample transactions from localStorage; added click-to-edit prompts on monthly budget spend and savings target cards |
 
 ---
 

@@ -5179,6 +5179,13 @@ dialog.gym-demo-dialog,
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.money-bar-header:hover .money-bar-ratio {
+    color: #3b82f6;
+    text-decoration: underline;
 }
 
 .money-bar-title {
