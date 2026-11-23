@@ -2539,6 +2539,37 @@ body {
     color: #0f172a;
 }
 
+/* Money Flow Excel Auto-Sync Button */
+.money-excel-sync-btn {
+    transition: all 0.2s ease;
+}
+
+.money-excel-sync-btn .sync-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #94a3b8;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.money-excel-sync-btn.synced {
+    background: #f0fdf4;
+    border-color: #10b981;
+    color: #065f46;
+    font-weight: 600;
+}
+
+.money-excel-sync-btn.synced .sync-status-dot {
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+.money-excel-sync-btn.synced:hover {
+    background: #dcfce7;
+    border-color: #059669;
+}
+
 .gym-btn-solid {
     display: inline-flex;
     align-items: center;

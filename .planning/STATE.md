@@ -130,6 +130,7 @@ Work through these in order. Mark each as `ðŸ”„ In Progress` when you start, `âœ
 | 2026-11-21 | Antigravity | Added full date format (`DD-MMM YYYY`, e.g. `21-Nov 2026`) on active day card: updated `renderDaysCardsOnly()` and `setActiveCard()` in `app.js` so that active day cards dynamically display full date with year while inactive cards display compact date (`Nov 21`); enhanced active date sub-label styling in `styles.css`. |
 | 2026-11-22 | Antigravity | Published codebase to GitHub: configured Git & GitHub CLI, created comprehensive `README.md` and `.gitignore`, created public repository `Daily-Scheduler`, and pushed `main` branch to `https://github.com/gitibrahim313/Daily-Scheduler` |
 | 2026-11-23 | Antigravity | Cleared all default/mock transactions from `money.html` and `money.js`; set default transactions to empty `[]`, budgetLimit to 0, savingsTarget to 0; added auto-cleaner in `loadMoneyData()` to purge legacy sample transactions from localStorage; added click-to-edit prompts on monthly budget spend and savings target cards |
+| 2026-11-23 | Antigravity | Implemented automatic Excel sync with `Data.xlsx`: integrated standalone SheetJS library (`assets/xlsx.full.min.js`), wired File System Access API with IndexedDB persistent handle, added `#moneyExcelSyncBtn` with live status indicator, and automated auto-saving of all Money Flow entries (Sr. No, Dates, Description, Types, Amount) into `Data.xlsx`'s 'Money Flow' sheet while fully preserving 'Daily Habits' and 'Notes' sheets; added offline CLI utility `sync_excel.js` |
 
 ---
 

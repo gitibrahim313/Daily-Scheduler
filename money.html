@@ -167,6 +167,18 @@
                         </div>
                     </div>
                     <div class="money-header-actions">
+                        <button type="button" class="gym-btn-outline money-excel-sync-btn" id="moneyExcelSyncBtn"
+                            title="Auto-sync entries directly with Data.xlsx">
+                            <span class="sync-status-dot" id="moneySyncDot"></span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="8" y1="13" x2="16" y2="13"></line>
+                                <line x1="8" y1="17" x2="16" y2="17"></line>
+                            </svg>
+                            <span id="moneyExcelSyncText">Auto-Sync Data.xlsx</span>
+                        </button>
                         <button type="button" class="gym-btn-outline" id="moneyClearBtn"
                             title="Clear all transactions">Clear</button>
                         <button type="button" class="gym-btn-outline" id="moneyResetBtn"
@@ -378,6 +390,8 @@
         </dialog>
     </div>
 
+    <!-- Local Excel XLSX Library for Auto-Sync -->
+    <script src="assets/xlsx.full.min.js"></script>
     <!-- Money Standalone Controller Script -->
     <script src="money.js"></script>
 </body>
